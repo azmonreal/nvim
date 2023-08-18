@@ -4,13 +4,13 @@ vim.opt.tabstop = 4
 vim.opt.laststatus = 3
 vim.opt.winbar = "%f"
 
-vim.keymap.set({"n"}, "<Tab>", "<cmd>bn<CR>", {desc="Switch to next buffer"})
-vim.keymap.set({"n"}, "<S-Tab>", "<cmd>bp<CR>", {desc="Switch to previous buffer"})
+vim.keymap.set({ "n" }, "<Tab>", "<cmd>bn<CR>", { desc = "Switch to next buffer" })
+vim.keymap.set({ "n" }, "<S-Tab>", "<cmd>bp<CR>", { desc = "Switch to previous buffer" })
 
-vim.keymap.set({"n"}, "<M-k>", "<C-w>k", {desc=""})
-vim.keymap.set({"n"}, "<M-j>", "<C-w>j", {desc=""})
-vim.keymap.set({"n"}, "<M-h>", "<C-w>h", {desc=""})
-vim.keymap.set({"n"}, "<M-l>", "<C-w>l", {desc=""})
+vim.keymap.set({ "n" }, "<M-k>", "<C-w>k", { desc = "Move cursor to window below current one" })
+vim.keymap.set({ "n" }, "<M-j>", "<C-w>j", { desc = "Move cursor to window above current one" })
+vim.keymap.set({ "n" }, "<M-h>", "<C-w>h", { desc = "Move cursor to window left of current one" })
+vim.keymap.set({ "n" }, "<M-l>", "<C-w>l", { desc = "Move cursor to window right of current one" })
 
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -45,6 +45,11 @@ local plugins = {
 	"hrsh7th/nvim-cmp",
 
 	"L3MON4D3/LuaSnip",
+
+	{
+		'nvim-telescope/telescope.nvim',
+		dependencies = { 'nvim-lua/plenary.nvim' }
+	},
 }
 local opts = {}
 
@@ -70,12 +75,12 @@ require("lspconfig").lua_ls.setup {
 	},
 }
 require("lspconfig").texlab.setup {
-		capabilities = capabilities
+	capabilities = capabilities
 }
 
 local cmp = require("cmp")
 
-local cmp_setup =  {
+local cmp_setup = {
 	snippet = {
 		-- REQUIRED - you must specify a snippet engine
 		expand = function(args)
