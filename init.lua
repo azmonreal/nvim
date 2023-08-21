@@ -1,8 +1,13 @@
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.tabstop = 4
 vim.opt.laststatus = 3
 vim.opt.winbar = "%f"
+
+vim.keymap.set({ "n" }, "<C-_>", "<cmd>noh<CR>", { desc = "Stop highlighting search pattern" })
 
 vim.keymap.set({ "n" }, "<Tab>", "<cmd>bn<CR>", { desc = "Switch to next buffer" })
 vim.keymap.set({ "n" }, "<S-Tab>", "<cmd>bp<CR>", { desc = "Switch to previous buffer" })
