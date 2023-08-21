@@ -55,10 +55,13 @@ local plugins = {
 		'nvim-telescope/telescope.nvim',
 		dependencies = { 'nvim-lua/plenary.nvim' }
 	},
-}
-local opts = {}
 
-require("lazy").setup(plugins, opts)
+	"lewis6991/gitsigns.nvim",
+	"kdheepak/lazygit.nvim",
+}
+local lazy_opts = {}
+
+require("lazy").setup(plugins, lazy_opts)
 vim.cmd [[colorscheme tokyonight-night]]
 
 require("mason").setup()
@@ -104,9 +107,45 @@ local cmp_setup = {
 	}),
 	sources = cmp.config.sources({
 		{ name = 'nvim_lsp' },
+		{ name = 'luasnip' },
+		{ name = 'path' },
 	}, {
 		{ name = 'buffer' },
 	}),
 }
 
 cmp.setup(cmp_setup)
+
+require('gitsigns').setup {
+	signs = {
+		add          = { text = '│' },
+		change       = { text = '│' },
+		delete       = { text = '_' },
+		topdelete    = { text = '‾' },
+		changedelete = { text = '~' },
+		untracked    = { text = '┆' },
+	},
+
+	on_attach = function(bufnr)
+		local gs = package.loaded.gitsigns
+
+		local function map(mode, l, r, opts)
+			opts = opts or {}
+			opts.buffer = bufnr
+			vim.keymap.set(mode, l, r, opts)
+		end
+
+		-- Navigation
+		map('n', ']c', function()
+			if vim.wo.diff then return ']c' end
+			vim.schedule(function() gs.next_hunk() end)
+			return '<Ignore>'
+		end, { expr = true })
+
+		map('n', '[c', function()
+			if vim.wo.diff then return '[c' end
+			vim.schedule(function() gs.prev_hunk() end)
+			return '<Ignore>'
+		end, { expr = true })
+	end
+}
