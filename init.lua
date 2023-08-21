@@ -7,6 +7,8 @@ vim.opt.tabstop = 4
 vim.opt.laststatus = 3
 vim.opt.winbar = "%f"
 
+vim.g.mapleader = " "
+
 vim.keymap.set({ "n" }, "<C-_>", "<cmd>noh<CR>", { desc = "Stop highlighting search pattern" })
 
 vim.keymap.set({ "n" }, "<Tab>", "<cmd>bn<CR>", { desc = "Switch to next buffer" })
@@ -17,6 +19,7 @@ vim.keymap.set({ "n" }, "<M-j>", "<C-w>j", { desc = "Move cursor to window above
 vim.keymap.set({ "n" }, "<M-h>", "<C-w>h", { desc = "Move cursor to window left of current one" })
 vim.keymap.set({ "n" }, "<M-l>", "<C-w>l", { desc = "Move cursor to window right of current one" })
 
+vim.keymap.set({ "n" }, "<leader>bf", vim.lsp.buf.format, { desc = "Run lsp format command on current buffer" })
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
