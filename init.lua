@@ -14,10 +14,10 @@ vim.keymap.set({ "n" }, "<C-_>", "<cmd>noh<CR>", { desc = "Stop highlighting sea
 vim.keymap.set({ "n" }, "<Tab>", "<cmd>bn<CR>", { desc = "Switch to next buffer" })
 vim.keymap.set({ "n" }, "<S-Tab>", "<cmd>bp<CR>", { desc = "Switch to previous buffer" })
 
-vim.keymap.set({ "n" }, "<M-k>", "<C-w>k", { desc = "Move cursor to window below current one" })
-vim.keymap.set({ "n" }, "<M-j>", "<C-w>j", { desc = "Move cursor to window above current one" })
-vim.keymap.set({ "n" }, "<M-h>", "<C-w>h", { desc = "Move cursor to window left of current one" })
-vim.keymap.set({ "n" }, "<M-l>", "<C-w>l", { desc = "Move cursor to window right of current one" })
+vim.keymap.set({ "n" }, "<C-k>", "<C-w>k", { desc = "Move cursor to window below current one" })
+vim.keymap.set({ "n" }, "<C-j>", "<C-w>j", { desc = "Move cursor to window above current one" })
+vim.keymap.set({ "n" }, "<C-h>", "<C-w>h", { desc = "Move cursor to window left of current one" })
+vim.keymap.set({ "n" }, "<C-l>", "<C-w>l", { desc = "Move cursor to window right of current one" })
 
 vim.keymap.set({ "n" }, "<leader>bf", vim.lsp.buf.format, { desc = "Run lsp format command on current buffer" })
 
