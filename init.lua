@@ -20,6 +20,19 @@ vim.keymap.set({ "n" }, "<C-h>", "<C-w>h", { desc = "Move cursor to window left 
 vim.keymap.set({ "n" }, "<C-l>", "<C-w>l", { desc = "Move cursor to window right of current one" })
 
 vim.keymap.set({ "n" }, "<leader>bf", vim.lsp.buf.format, { desc = "Run lsp format command on current buffer" })
+vim.keymap.set({ "n" }, "gD", vim.lsp.buf.declaration, { desc = "Go to symbol declaration" })
+vim.keymap.set({ "n" }, "gd", vim.lsp.buf.definition, { desc = "Go to symbol definition" })
+vim.keymap.set({ "n" }, "K", vim.lsp.buf.hover, { desc = "Show hover window" })
+vim.keymap.set({ "n" }, "gi", vim.lsp.buf.implementation, { desc = "Go to implementation" })
+-- vim.keymap.set({ "n" }, "<C-k>", vim.lsp.buf.signature_help, {desc = "Show signature help"})
+vim.keymap.set({ "n" }, "<leader>rn", vim.lsp.buf.rename, { desc = "Rename symbol under cursor" })
+vim.keymap.set({ "n" }, "gr", vim.lsp.buf.references, { desc = "Find references to symbol" })
+vim.keymap.set({ "n" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "Show available code actions" })
+vim.keymap.set({ "n" }, "gl", vim.diagnostic.open_float, { desc = "Open diagnositcs floating window" })
+vim.keymap.set({ "n" }, "[d", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic" })
+vim.keymap.set({ "n" }, "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnostic" })
+vim.keymap.set({ "n" }, "<leader>q", vim.diagnostic.setloclist, { desc = "" })
+vim.cmd([[ command! Format execute 'lua vim.lsp.buf.formatting([{asyng=true}])' ]])
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -68,8 +81,8 @@ local plugins = {
 	"L3MON4D3/LuaSnip",
 
 	{
-		'nvim-telescope/telescope.nvim',
-		dependencies = { 'nvim-lua/plenary.nvim' }
+		"nvim-telescope/telescope.nvim",
+		dependencies = { "nvim-lua/plenary.nvim" }
 	},
 
 	"lewis6991/gitsigns.nvim",
@@ -87,7 +100,7 @@ require("mason-lspconfig").setup()
 require("neodev").setup()
 
 -- Set up lspconfig.
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
 -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
 
 require("lspconfig").lua_ls.setup {
@@ -114,38 +127,38 @@ local cmp_setup = {
 	snippet = {
 		-- REQUIRED - you must specify a snippet engine
 		expand = function(args)
-			require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+			require("luasnip").lsp_expand(args.body) -- For `luasnip` users.
 		end,
 	},
 	window = {
 		documentation = cmp.config.window.bordered(),
 	},
 	mapping = cmp.mapping.preset.insert({
-		['<C-b>'] = cmp.mapping.scroll_docs(-4),
-		['<C-f>'] = cmp.mapping.scroll_docs(4),
-		['<C-Space>'] = cmp.mapping.complete(),
-		['<C-e>'] = cmp.mapping.abort(),
-		['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+		["<C-b>"] = cmp.mapping.scroll_docs(-4),
+		["<C-f>"] = cmp.mapping.scroll_docs(4),
+		["<C-Space>"] = cmp.mapping.complete(),
+		["<C-e>"] = cmp.mapping.abort(),
+		["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
 	}),
 	sources = cmp.config.sources({
-		{ name = 'nvim_lsp' },
-		{ name = 'luasnip' },
-		{ name = 'path' },
+		{ name = "nvim_lsp" },
+		{ name = "luasnip" },
+		{ name = "path" },
 	}, {
-		{ name = 'buffer' },
+		{ name = "buffer" },
 	}),
 }
 
 cmp.setup(cmp_setup)
 
-require('gitsigns').setup {
+require("gitsigns").setup {
 	signs = {
-		add          = { text = '│' },
-		change       = { text = '│' },
-		delete       = { text = '_' },
-		topdelete    = { text = '‾' },
-		changedelete = { text = '~' },
-		untracked    = { text = '┆' },
+		add          = { text = "│" },
+		change       = { text = "│" },
+		delete       = { text = "_" },
+		topdelete    = { text = "‾" },
+		changedelete = { text = "~" },
+		untracked    = { text = "┆" },
 	},
 
 	on_attach = function(bufnr)
@@ -158,21 +171,21 @@ require('gitsigns').setup {
 		end
 
 		-- Navigation
-		map('n', ']c', function()
-			if vim.wo.diff then return ']c' end
+		map("n", "]c", function()
+			if vim.wo.diff then return "]c" end
 			vim.schedule(function() gs.next_hunk() end)
-			return '<Ignore>'
+			return "<Ignore>"
 		end, { expr = true })
 
-		map('n', '[c', function()
-			if vim.wo.diff then return '[c' end
+		map("n", "[c", function()
+			if vim.wo.diff then return "[c" end
 			vim.schedule(function() gs.prev_hunk() end)
-			return '<Ignore>'
+			return "<Ignore>"
 		end, { expr = true })
 	end
 }
 
-require 'nvim-treesitter.configs'.setup {
+require "nvim-treesitter.configs".setup {
 	highlight = {
 		enable = true,
 		-- Setting this to true will run `:h syntax` and tree-sitter at the same time.
