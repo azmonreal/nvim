@@ -39,15 +39,15 @@ local plugins = {
 	"shaunsingh/nord.nvim",
 
 	-- {
-		-- "folke/noice.nvim",
-		-- dependencies = {
-			-- -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
-			-- "MunifTanjim/nui.nvim",
-			-- -- OPTIONAL:
-			-- --   `nvim-notify` is only needed, if you want to use the notification view.
-			-- --   If not available, we use `mini` as the fallback
-			-- "rcarriga/nvim-notify",
-		-- }
+	-- "folke/noice.nvim",
+	-- dependencies = {
+	-- -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+	-- "MunifTanjim/nui.nvim",
+	-- -- OPTIONAL:
+	-- --   `nvim-notify` is only needed, if you want to use the notification view.
+	-- --   If not available, we use `mini` as the fallback
+	-- "rcarriga/nvim-notify",
+	-- }
 	-- },
 
 	"folke/neodev.nvim",
@@ -91,6 +91,7 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities()
 -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
 
 require("lspconfig").lua_ls.setup {
+	capabilities = capabilities,
 	settings = {
 		Lua = {
 			workspace = {
@@ -100,6 +101,10 @@ require("lspconfig").lua_ls.setup {
 	},
 }
 require("lspconfig").texlab.setup {
+	capabilities = capabilities
+}
+
+require("lspconfig").clangd.setup {
 	capabilities = capabilities
 }
 
