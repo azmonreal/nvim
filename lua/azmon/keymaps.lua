@@ -44,14 +44,16 @@ local custom_maps = {
 	telescope = {
 		leader = "<leader>" .. telescope_ldr,
 		mappings = {
-			{ { "n" }, telescope_ldr, telescope.builtin,                   { desc = "Open telescope picker list" } },
-			{ { "n" }, "g",           telescope.live_grep,                 { desc = "Open telescope live grep" } },
-			{ { "n" }, "/",           telescope.current_buffer_fuzzy_find, { desc = "Open telescope current buffer fuzzy find" } },
-			{ { "n" }, "b",           telescope.buffers,                   { desc = "Open telescope buffer list" } },
-			{ { "n" }, "h",           telescope.help_tags,                 { desc = "Open telescope help search" } },
-			{ { "n" }, "k",           telescope.keymaps,                   { desc = "Open telescope keymap list" } },
-			{ { "n" }, "r",           telescope.registers,                 { desc = "Open telescope register list" } },
-			{ { "n" }, "j",           telescope.jumplist,                  { desc = "Open telescope jumplist" } },
+			{ { "n" }, "<leader>", telescope.builtin,                   { desc = "Open telescope picker list" } },
+			{ { "n" }, "g",        telescope.live_grep,                 { desc = "Open telescope live grep" } },
+			{ { "n" }, "/",        telescope.current_buffer_fuzzy_find, { desc = "Open telescope current buffer fuzzy find" } },
+			{ { "n" }, "b",        telescope.buffers,                   { desc = "Open telescope buffer list" } },
+			{ { "n" }, "h",        telescope.help_tags,                 { desc = "Open telescope help search" } },
+			{ { "n" }, "k",        telescope.keymaps,                   { desc = "Open telescope keymap list" } },
+			{ { "n" }, "r",        telescope.registers,                 { desc = "Open telescope register list" } },
+			{ { "n" }, "j",        telescope.jumplist,                  { desc = "Open telescope jumplist" } },
+			{ { "n" }, "f",        telescope.find_files,                { desc = "Open telescope file list" } },
+			{ { "n" }, "r",        telescope.oldfiles,                  { desc = "Open telescope old files" } },
 		}
 	},
 }
