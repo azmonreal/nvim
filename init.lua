@@ -8,5 +8,3 @@ local modules = {
 for _, v in pairs(modules) do
 	local status, error = pcall(require, "azmon." .. v)
 end
-
-vim.cmd [[colorscheme tokyonight-night]]

@@ -12,7 +12,14 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 local plugins = {
-	"folke/tokyonight.nvim",
+	{
+		"folke/tokyonight.nvim",
+		lazy = false,
+		priority = 1000,
+		config = function()
+			vim.cmd([[colorscheme tokyonight-night]])
+		end,
+	},
 	"shaunsingh/nord.nvim",
 
 	-- {
