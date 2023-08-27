@@ -59,6 +59,8 @@ local plugins = {
 	"lewis6991/gitsigns.nvim",
 	"kdheepak/lazygit.nvim",
 	"sindrets/diffview.nvim",
+
+	"lervag/vimtex",
 }
 local lazy_opts = {}
 
