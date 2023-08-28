@@ -22,6 +22,7 @@ local custom_maps = {
 			{ { "n" }, "<C-j>",   "<C-w>j",       { desc = "Move cursor to window above current one" } },
 			{ { "n" }, "<C-h>",   "<C-w>h",       { desc = "Move cursor to window left of current one" } },
 			{ { "n" }, "<C-l>",   "<C-w>l",       { desc = "Move cursor to window right of current one" } },
+			{ { "n" }, "<leader>cd", require("project_nvim.project").on_buf_enter, { desc = "" } },
 		}
 	},
 	lsp = {
