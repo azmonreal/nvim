@@ -15,13 +15,17 @@ local telescope_ldr = "f"
 local custom_maps = {
 	{
 		mappings = {
-			{ { "n" }, "<C-_>",   "<cmd>noh<CR>", { desc = "Stop highlighting search pattern" } },
-			{ { "n" }, "<Tab>",   "<cmd>bn<CR>",  { desc = "Switch to next buffer" } },
-			{ { "n" }, "<S-Tab>", "<cmd>bp<CR>",  { desc = "Switch to previous buffer" } },
-			{ { "n" }, "<C-k>",   "<C-w>k",       { desc = "Move cursor to window below current one" } },
-			{ { "n" }, "<C-j>",   "<C-w>j",       { desc = "Move cursor to window above current one" } },
-			{ { "n" }, "<C-h>",   "<C-w>h",       { desc = "Move cursor to window left of current one" } },
-			{ { "n" }, "<C-l>",   "<C-w>l",       { desc = "Move cursor to window right of current one" } },
+			{ { "n" }, "<C-_>",      "<cmd>noh<CR>",                               { desc = "Stop highlighting search pattern" } },
+			{ { "n" }, "<Tab>",      "<cmd>bn<CR>",                                { desc = "Switch to next buffer" } },
+			{ { "n" }, "<S-Tab>",    "<cmd>bp<CR>",                                { desc = "Switch to previous buffer" } },
+			{ { "n" }, "<C-k>",      "<C-w>k",                                     { desc = "Move cursor to window below current one" } },
+			{ { "n" }, "<C-j>",      "<C-w>j",                                     { desc = "Move cursor to window above current one" } },
+			{ { "n" }, "<C-h>",      "<C-w>h",                                     { desc = "Move cursor to window left of current one" } },
+			{ { "n" }, "<C-l>",      "<C-w>l",                                     { desc = "Move cursor to window right of current one" } },
+
+			{ { "n" }, "<leader>cd", require("project_nvim.project").on_buf_enter, { desc = "" } },
+
+			{ { "n" }, "<leader>gt", function() vim.cmd([[LazyGit]]) end,          { desc = "" } },
 		}
 	},
 	lsp = {

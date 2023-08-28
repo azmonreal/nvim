@@ -49,6 +49,8 @@ local plugins = {
 
 	"hrsh7th/nvim-cmp",
 
+	"zbirenbaum/copilot.lua",
+
 	"L3MON4D3/LuaSnip",
 
 	{
@@ -61,6 +63,7 @@ local plugins = {
 	"sindrets/diffview.nvim",
 
 	"lervag/vimtex",
+	"ahmedkhalf/project.nvim",
 }
 local lazy_opts = {}
 
