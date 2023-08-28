@@ -49,6 +49,8 @@ local plugins = {
 
 	"hrsh7th/nvim-cmp",
 
+	"zbirenbaum/copilot.lua",
+
 	"L3MON4D3/LuaSnip",
 
 	{
