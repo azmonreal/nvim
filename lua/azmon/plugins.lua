@@ -22,7 +22,11 @@ require("lspconfig").texlab.setup {
 }
 
 require("lspconfig").clangd.setup {
-	capabilities = capabilities
+	capabilities = capabilities,
+	cmd = {
+		"clangd",
+		"--offset-encoding=utf-16",
+	},
 }
 
 local cmp = require("cmp")
@@ -127,7 +131,7 @@ require("project_nvim").setup(
 
 		-- All the patterns used to detect root dir, when **"pattern"** is in
 		-- detection_methods
-		patterns = { ".git", "_darcs", ".hg", ".bzr", ".svn", "Makefile", "package.json" },
+		patterns = { ".git", "_darcs", ".hg", ".bzr", ".svn", "Makefile", "package.json", "CMakeLists.txt" },
 
 		-- Table of lsp clients to ignore by name
 		-- eg: { "efm", ... }
@@ -158,3 +162,5 @@ require("project_nvim").setup(
 
 
 require("copilot").setup()
+
+require("cmake").setup()

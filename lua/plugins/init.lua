@@ -55,5 +55,7 @@ return {
 	{
 		"monkoose/nvlime",
 		dependencies = { "monkoose/parsley" }
-	}
+	},
+
+	"Shatur/neovim-cmake",
 }
