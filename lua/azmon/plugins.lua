@@ -59,6 +59,8 @@ local cmp_setup = {
 
 cmp.setup(cmp_setup)
 
+require("Comment").setup()
+
 require("gitsigns").setup {
 	signs = {
 		add          = { text = "│" },
@@ -159,7 +161,6 @@ require("project_nvim").setup(
 		datapath = vim.fn.stdpath("data"),
 	}
 )
-
 
 require("copilot").setup()
 

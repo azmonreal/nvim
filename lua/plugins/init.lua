@@ -58,4 +58,9 @@ return {
 	},
 
 	"Shatur/neovim-cmake",
+
+	{
+		"numToStr/Comment.nvim",
+		lazy = false
+	},
 }

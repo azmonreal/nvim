@@ -14,6 +14,7 @@ local function MappingsToKeys()
 		{ { "n" }, "j",        function() require("telescope.builtin").jumplist() end,                  { desc = "Open telescope jumplist" } },
 		{ { "n" }, "f",        function() require("telescope.builtin").find_files() end,                { desc = "Open telescope file list" } },
 		{ { "n" }, "r",        function() require("telescope.builtin").oldfiles() end,                  { desc = "Open telescope old files" } },
+		{ { "n" }, "p",        function() require("telescope").extensions.projects.projects() end,      { desc = "Open telescope projects" } },
 	}
 
 	for i, v in ipairs(mappings) do
