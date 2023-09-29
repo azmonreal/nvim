@@ -63,4 +63,9 @@ return {
 		"numToStr/Comment.nvim",
 		lazy = false
 	},
+
+	{
+		"christoomey/vim-tmux-navigator",
+		lazy = false,
+	},
 }
