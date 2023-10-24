@@ -4,7 +4,14 @@ require("mason-lspconfig").setup()
 require("neodev").setup()
 
 -- Set up lspconfig.
-local capabilities = require("cmp_nvim_lsp").default_capabilities()
+-- local capabilities = require("cmp_nvim_lsp").default_capabilities()
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+
+capabilities.textDocument.foldingRange = {
+	dynamicRegistration = false,
+	lineFoldingOnly = true,
+}
+
 -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
 
 require("lspconfig").lua_ls.setup {
@@ -165,3 +172,7 @@ require("project_nvim").setup(
 require("copilot").setup()
 
 require("cmake").setup()
+
+-- require("ufo").setup({
+-- 	open_fold_hl_timeout = 50,
+-- })
