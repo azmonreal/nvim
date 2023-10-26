@@ -64,7 +64,18 @@ local cmp_setup = {
 	}),
 }
 
+local cmp_cmdline_setup = {
+	mapping = cmp.mapping.preset.cmdline(),
+	sources = cmp.config.sources({
+		{ name = "path" },
+	}, {
+		{ name = "buffer" },
+	}),
+
+}
+
 cmp.setup(cmp_setup)
+cmp.setup.cmdline(":", cmp_cmdline_setup)
 
 require("Comment").setup()
 
