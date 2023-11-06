@@ -35,6 +35,9 @@ require("lspconfig").clangd.setup {
 		"--offset-encoding=utf-16",
 	},
 }
+require("lspconfig").pylsp.setup {
+	capabilities = capabilities
+}
 
 local cmp = require("cmp")
 
@@ -69,6 +72,10 @@ local cmp_cmdline_setup = {
 	sources = cmp.config.sources({
 		{ name = "path" },
 	}, {
+		{
+			name = "cmdline",
+			option = { ignore_cmds = { "Man", "!" } }
+		},
 		{ name = "buffer" },
 	}),
 
@@ -183,7 +190,3 @@ require("project_nvim").setup(
 require("copilot").setup()
 
 require("cmake").setup()
-
--- require("ufo").setup({
--- 	open_fold_hl_timeout = 50,
--- })
