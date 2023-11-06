@@ -7,10 +7,10 @@ require("neodev").setup()
 -- local capabilities = require("cmp_nvim_lsp").default_capabilities()
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 
-capabilities.textDocument.foldingRange = {
-	dynamicRegistration = false,
-	lineFoldingOnly = true,
-}
+-- capabilities.textDocument.foldingRange = {
+-- 	dynamicRegistration = false,
+-- 	lineFoldingOnly = true,
+-- }
 
 -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
 
