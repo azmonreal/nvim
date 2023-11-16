@@ -189,4 +189,5 @@ require("project_nvim").setup(
 
 require("copilot").setup()
 
-require("cmake").setup()
+require("cmake").setup({
+})
