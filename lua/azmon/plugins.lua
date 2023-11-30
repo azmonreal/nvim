@@ -34,6 +34,24 @@ require("lspconfig").clangd.setup {
 		"clangd",
 		"--offset-encoding=utf-16",
 	},
+	on_attach = function(client, bufnr)
+		local function handler(err, uri)
+			if not uri or uri == "" then
+				vim.api.nvim_echo({{"Corresponding file cannot be determined"}}, false, {})
+				return
+			end
+			local file_name = vim.uri_to_fname(uri)
+			vim.api.nvim_cmd({
+				cmd = "edit",
+				args = { file_name },
+			}, {})
+		end
+		local function client_request()
+			vim.lsp.get_client_by_id(client.id).request("textDocument/switchSourceHeader", { uri = vim.uri_from_bufnr(0) }, handler, 0)
+		end
+
+		vim.keymap.set("n", "<leader>gs", client_request, {})
+	end
 }
 require("lspconfig").pylsp.setup {
 	capabilities = capabilities
