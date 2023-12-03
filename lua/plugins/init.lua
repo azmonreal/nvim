@@ -75,6 +75,7 @@ return {
 			"kevinhwang91/promise-async",
 			{
 				"luukvbaal/statuscol.nvim",
+				branch = "0.10",
 				config = function()
 					local builtin = require("statuscol.builtin")
 					require("statuscol").setup({
