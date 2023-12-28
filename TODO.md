@@ -6,6 +6,9 @@
 - better keymas for basics
     - file saving
     - git stuff
+- highlight yank pre(?post)view
+- netrw
+- buffer/window/split management
 # LSP
 - auto install "ensure_installed" list
 - config and start servers automatically
