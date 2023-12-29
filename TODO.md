@@ -29,3 +29,8 @@
     - integrate snippets with cmp
     ? checkout 'coq' or which ever is the state of the art completion plugin
 ? autopairs
+- telescope
+    - customize picker appearance
+    - setup keymaps
+        + history
+        + preview scroll
