@@ -10,10 +10,7 @@
 - netrw
 - buffer/window/split management
 # LSP
-- auto install "ensure_installed" list
-- config and start servers automatically
-    - provide defulat capabilities + on_attach
-    - allow override
+- add default on_attach function for common keymaps
 # Plugins
 - standardize config location
     - when to use separate file, when to do in plugin spec
