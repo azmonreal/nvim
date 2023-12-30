@@ -1,5 +1,5 @@
 # General
-- fix wrong root dir detection for config
+- netrw
 - improve file system stuff
     + file creation
     + dir navigation
@@ -7,11 +7,12 @@
     - file saving
     - git stuff
 - highlight yank pre(?post)view
-- netrw
 - buffer/window/split management
 # LSP
 - add default on_attach function for common keymaps
 # Plugins
+- project
+    - fix wrong root dir detection for config
 - standardize config location
     - when to use separate file, when to do in plugin spec
     - split config file
@@ -31,3 +32,10 @@
     - setup keymaps
         + history
         + preview scroll
+- statuscolumn
+    - fix ufo
+- dap
+    - keymaps
+    - ui improvements
+        * fix debug repl size increase
+        * customize layout
