@@ -11,8 +11,6 @@
 # LSP
 - add default on_attach function for common keymaps
 # Plugins
-- project
-    - fix wrong root dir detection for config
 - standardize config location
     - when to use separate file, when to do in plugin spec
     - split config file
