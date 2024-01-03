@@ -1,7 +1,7 @@
 local function set_custom_maps(customMaps)
 	for _, map_group in pairs(customMaps) do
 		if map_group.leader == nil then map_group.leader = "" end
-		for _, keymap in pairs(map_group.mappings) do
+		for _, keymap in pairs(map_group[1]) do
 			local mode, rh, lf, opts = unpack(keymap)
 
 			vim.keymap.set(mode, map_group.leader .. rh, lf, opts)
@@ -12,10 +12,10 @@ end
 
 local custom_maps = {
 	{
-		mappings = {
+		{
 			{ { "n" }, "<C-_>",      "<cmd>noh<CR>",                               { desc = "Stop highlighting search pattern" } },
-			{ { "n" }, "<Tab>",      "<cmd>bn<CR>",                                { desc = "Switch to next buffer" } },
-			{ { "n" }, "<S-Tab>",    "<cmd>bp<CR>",                                { desc = "Switch to previous buffer" } },
+			{ { "n" }, "]b",      "<cmd>bn<CR>",                                { desc = "Switch to next buffer" } },
+			{ { "n" }, "[b",    "<cmd>bp<CR>",                                { desc = "Switch to previous buffer" } },
 			{ { "n" }, "<C-k>",      "<cmd> TmuxNavigateUp<CR>",                   { desc = "Move cursor to window below current one (tmux integrated)" } },
 			{ { "n" }, "<C-j>",      "<cmd> TmuxNavigateDown<CR>",                 { desc = "Move cursor to window above current one (tmux integrated)" } },
 			{ { "n" }, "<C-h>",      "<cmd> TmuxNavigateLeft<CR>",                 { desc = "Move cursor to window left of current one (tmux integrated)" } },
@@ -31,7 +31,7 @@ local custom_maps = {
 		}
 	},
 	lsp = {
-		mappings = {
+		{
 			{ { "n" }, "<leader>bf", function() vim.lsp.buf.format({ async = true }) end, { desc = "Run lsp format command on current buffer" } },
 			{ { "n" }, "gD",         vim.lsp.buf.declaration,                             { desc = "Go to symbol declaration" } },
 			{ { "n" }, "gd",         vim.lsp.buf.definition,                              { desc = "Go to symbol definition" } },
