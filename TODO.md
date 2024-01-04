@@ -8,12 +8,11 @@
     - git stuff
 - highlight yank pre(?post)view
 - buffer/window/split management
-# LSP
-- add default on_attach function for common keymaps
+- mappings for closing/quitting 'special' buffers
+    - smarter behavior
+        * dont close if only split in window
+        * close split
 # Plugins
-- standardize config location
-    - when to use separate file, when to do in plugin spec
-    - split config file
 - related keymaps set in config function
 - treesitter integration
     - solve 'matchit' incompatibility

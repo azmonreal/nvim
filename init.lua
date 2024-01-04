@@ -2,7 +2,6 @@ local modules = {
 	"options",
 	"lazy",
 	"keymaps",
-	"plugins",
 }
 
 for _, v in pairs(modules) do
@@ -11,3 +10,4 @@ for _, v in pairs(modules) do
 		vim.notify(error)
 	end
 end
+

@@ -7,6 +7,7 @@ return {
 			vim.cmd([[colorscheme tokyonight-night]])
 		end,
 	},
+
 	"shaunsingh/nord.nvim",
 
 	-- {
@@ -23,137 +24,112 @@ return {
 
 	"folke/neodev.nvim",
 
-	"williamboman/mason.nvim",
-	"williamboman/mason-lspconfig",
-	"neovim/nvim-lspconfig",
+	{
+		"nvim-treesitter/nvim-treesitter",
+		main = "nvim-treesitter.configs",
+		opts = {
+			highlight = {
+				enable = true,
+				-- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+				-- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+				-- Using this option may slow down your editor, and you may see some duplicate highlights.
+				-- Instead of true it can also be a list of languages
+				additional_vim_regex_highlighting = false,
+				disable = { "latex" },
+			},
+			incremental_selection = {
+				enable = true,
+				keymaps = {
+					init_selection = "gnn", -- set to `false` to disable one of the mappings
+					node_incremental = "grn",
+					scope_incremental = "grc",
+					node_decremental = "grm",
+				},
+			},
+		}
+	},
 
-	"nvim-treesitter/nvim-treesitter",
-
-	"hrsh7th/cmp-nvim-lsp",
-	"hrsh7th/cmp-buffer",
-	"hrsh7th/cmp-path",
-	"hrsh7th/cmp-cmdline",
-
-	"hrsh7th/nvim-cmp",
-
-	"zbirenbaum/copilot.lua",
+	{
+		"zbirenbaum/copilot.lua",
+		config = true,
+	},
 
 	"L3MON4D3/LuaSnip",
 
-	--telescope,
+	{
+		"lewis6991/gitsigns.nvim",
+		opts = {
+			signs = {
+				add          = { text = "│" },
+				change       = { text = "│" },
+				delete       = { text = "_" },
+				topdelete    = { text = "‾" },
+				changedelete = { text = "~" },
+				untracked    = { text = "┆" },
+			},
 
-	"lewis6991/gitsigns.nvim",
+			on_attach = function(bufnr)
+				local gs = package.loaded.gitsigns
+
+				local function map(mode, l, r, opts)
+					opts = opts or {}
+					opts.buffer = bufnr
+					vim.keymap.set(mode, l, r, opts)
+				end
+
+				-- Navigation
+				map("n", "]c", function()
+					if vim.wo.diff then return "]c" end
+					vim.schedule(function() gs.next_hunk() end)
+					return "<Ignore>"
+				end, { expr = true })
+
+				map("n", "[c", function()
+					if vim.wo.diff then return "[c" end
+					vim.schedule(function() gs.prev_hunk() end)
+					return "<Ignore>"
+				end, { expr = true })
+			end
+		}
+	},
 	"kdheepak/lazygit.nvim",
 	"sindrets/diffview.nvim",
 
 	"lervag/vimtex",
-	"ahmedkhalf/project.nvim",
+
+	{
+		"ahmedkhalf/project.nvim",
+		main = "project_nvim",
+		opts = {
+			manual_mode = false,
+			detection_methods = { "lsp", "pattern", },
+			patterns = { ".git", "Makefile", "package.json", "CMakeLists.txt" },
+			ignore_lsp = { "lua_ls" },
+			exclude_dirs = {},
+			show_hidden = false,
+			silent_chdir = true,
+			scope_chdir = "global", -- "global" | "tab" | "win"
+			datapath = vim.fn.stdpath("data"),
+		}
+	},
 
 	"nvim-lua/plenary.nvim",
-	{ "nvim-tree/nvim-web-devicons", lazy = true },
+	"nvim-tree/nvim-web-devicons",
 
 	{
 		"monkoose/nvlime",
 		dependencies = { "monkoose/parsley" }
 	},
 
-	"Shatur/neovim-cmake",
-
 	{
-		"numToStr/Comment.nvim",
-		lazy = false
+		"Shatur/neovim-cmake",
+		config = true,
 	},
+	--"Civitasv/cmake-tools.nvim",
 
-	{
-		"christoomey/vim-tmux-navigator",
-		lazy = false,
-	},
+	"numToStr/Comment.nvim",
 
-	{
-		"kevinhwang91/nvim-ufo",
-		dependencies = {
-			"kevinhwang91/promise-async",
-			{
-				"luukvbaal/statuscol.nvim",
-				branch = "0.10",
-				config = function()
-					local builtin = require("statuscol.builtin")
-					require("statuscol").setup({
-						relculright = true,
-						segments = {
-							{ text = { builtin.foldfunc, " " },                                  click = "v:lua.ScFa" },
-							{
-								sign = { name = { ".*" }, maxwidth = 2, colwidth = 1, auto = true, wrap = true, },
-								click = "v:lua.ScSa"
-							},
-							{ text = { builtin.lnumfunc, " " },                                  click = "v:lua.ScLa" },
-							{ sign = { namespace = { "gitsign*" }, maxwidth = 1, auto = false }, click = "v:lua.ScSa" },
-							{ sign = { name = { "Diagnostic" }, maxwidth = 1, auto = true },     click = "v:lua.ScSa" },
-						},
-					})
-				end,
-			},
-		},
-		event = "BufReadPost",
-		opts = {
-			open_fold_hl_timeout = 300,
-			provider_selector = function(a)
-				return "lsp"
-			end,
-		},
-
-		init = function()
-			vim.keymap.set("n", "zR", function()
-				require("ufo").openAllFolds()
-			end)
-			vim.keymap.set("n", "zM", function()
-				require("ufo").closeAllFolds()
-			end)
-		end,
-	},
-	{
-		"mfussenegger/nvim-dap",
-		dependencies = {
-			"rcarriga/nvim-dap-ui",
-		},
-		config = function()
-			require("dapui").setup()
-			local dap = require("dap")
-			dap.adapters.lldb = {
-				type = "executable",
-				command = "/usr/bin/lldb-vscode", -- adjust as needed, must be absolute path
-				name = "lldb"
-			}
-			local dap = require("dap")
-			dap.configurations.cpp = {
-				{
-					name = "Launch",
-					type = "lldb",
-					request = "launch",
-					program = function()
-						return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
-					end,
-					cwd = "${workspaceFolder}",
-					stopOnEntry = true,
-					args = {},
-
-					-- 💀
-					-- if you change `runInTerminal` to true, you might need to change the yama/ptrace_scope setting:
-					--
-					--    echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope
-					--
-					-- Otherwise you might get the following error:
-					--
-					--    Error on launch: Failed to attach to the target process
-					--
-					-- But you should be aware of the implications:
-					-- https://www.kernel.org/doc/html/latest/admin-guide/LSM/Yama.html
-					-- runInTerminal = false,
-				},
-			}
-		end,
-
-	},
+	"christoomey/vim-tmux-navigator",
 
 	{
 		"mrcjkb/rustaceanvim",
@@ -165,6 +141,10 @@ return {
 		"ThePrimeagen/harpoon",
 		branch = "harpoon2",
 		dependencies = { "nvim-lua/plenary.nvim" },
+		config = function()
+			local harpoon = require("harpoon")
+			harpoon:setup({})
+		end,
 		init = function()
 			local harpoon = require("harpoon")
 
@@ -180,5 +160,10 @@ return {
 			vim.keymap.set("n", "<C-S-P>", function() harpoon:list():prev({ --[[ui_nav_wrap = true ]] }) end)
 			vim.keymap.set("n", "<C-S-N>", function() harpoon:list():next({ --[[ui_nav_wrap = true]] }) end)
 		end
-	}
+	},
+
+	{
+		"j-hui/fidget.nvim",
+		opts = {}
+	},
 }
