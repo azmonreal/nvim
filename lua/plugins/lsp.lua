@@ -30,6 +30,10 @@ return {
 			"neovim/nvim-lspconfig",
 		},
 		opts = {
+			ensure_installed = {
+				"lua_ls", "clangd", "texlab", "pylsp", "rust_analyzer"
+			},
+			automatic_installation = true,
 			handlers = {
 				function(server_name)
 					require("lspconfig")[server_name].setup({})
