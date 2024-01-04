@@ -7,7 +7,7 @@ vim.api.nvim_create_autocmd("LspAttach",
 			vim.keymap.set({ "n" }, "gd", vim.lsp.buf.definition, { desc = "Go to symbol definition" })
 			vim.keymap.set({ "n" }, "K", vim.lsp.buf.hover, { desc = "Show hover window" })
 			vim.keymap.set({ "n" }, "gi", vim.lsp.buf.implementation, { desc = "Go to implementation" })
-			vim.keymap.set({ "i", "n" }, "<C-k>", vim.lsp.buf.signature_help, { desc = "Show signature help" })
+			vim.keymap.set({ "i" }, "<C-k>", vim.lsp.buf.signature_help, { desc = "Show signature help" })
 			vim.keymap.set({ "n" }, "<leader>rn", vim.lsp.buf.rename, { desc = "Rename symbol under cursor" })
 			vim.keymap.set({ "n" }, "gr", vim.lsp.buf.references, { desc = "Find references to symbol" })
 			vim.keymap.set({ "n" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "Show available code actions" })
@@ -15,6 +15,7 @@ vim.api.nvim_create_autocmd("LspAttach",
 			vim.keymap.set({ "n" }, "[d", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic" })
 			vim.keymap.set({ "n" }, "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnostic" })
 			vim.keymap.set({ "n" }, "<leader>q", vim.diagnostic.setloclist, { desc = "Lsp set loclist" })
+			vim.keymap.set({ "n" }, "<leader>sh", function() vim.lsp.inlay_hint.enable(nil, not vim.lsp.inlay_hint.is_enabled(nil)) end)
 		end
 	}
 )
