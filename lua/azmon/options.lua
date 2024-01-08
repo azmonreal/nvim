@@ -22,6 +22,10 @@ vim.o.foldenable = true
 
 vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 
+vim.o.pumheight = 10
+
+
+
 -- vim.o.statuscolumn = '%=%l%s%#FoldColumn#%{foldlevel(v:lnum) > foldlevel(v:lnum - 1) ? (foldclosed(v:lnum) == -1 ? " " : " ") : "  " }%*'
 
 vim.api.nvim_create_autocmd("TextYankPost", {

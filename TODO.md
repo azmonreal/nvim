@@ -20,7 +20,7 @@
 - snippets and completion
     - get snippets
     - better keympas for accepting completion
-    - integrate snippets with cmp
+    - improve cmp window highlights (nvchad as reference https://github.com/fitrh/init.nvim/blob/main/lua/config/plugin/cmp/setup.lua#L39-L56)
     ? checkout 'coq' or which ever is the state of the art completion plugin
 ? autopairs
 - telescope
