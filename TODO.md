@@ -6,7 +6,6 @@
 - better keymas for basics
     - file saving
     - git stuff
-- highlight yank pre(?post)view
 - buffer/window/split management
 - mappings for closing/quitting 'special' buffers
     - smarter behavior

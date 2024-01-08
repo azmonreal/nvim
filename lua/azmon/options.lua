@@ -25,7 +25,6 @@ vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 -- vim.o.statuscolumn = '%=%l%s%#FoldColumn#%{foldlevel(v:lnum) > foldlevel(v:lnum - 1) ? (foldclosed(v:lnum) == -1 ? " " : " ") : "  " }%*'
 
 vim.api.nvim_create_autocmd("TextYankPost", {
-	buffer = 0,
 	callback = function()
 		vim.highlight.on_yank({ timeout = 500 })
 	end
