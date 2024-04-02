@@ -60,56 +60,24 @@ return {
 		config = function()
 			local ls = require("luasnip")
 
-			vim.keymap.set({ "i" }, "<C-K>", function() ls.expand() end, { silent = true })
-			vim.keymap.set({ "i", "s" }, "<C-L>", function() ls.jump(1) end, { silent = true })
-			vim.keymap.set({ "i", "s" }, "<C-J>", function() ls.jump(-1) end, { silent = true })
+			Utils.set_custom_maps({
+				[""] = {
+					{ { "i" },      "<C-K>", function() ls.expand() end, { silent = true } },
+					{ { "i", "s" }, "<C-L>", function() ls.jump(1) end,  { silent = true } },
+					{ { "i", "s" }, "<C-J>", function() ls.jump(-1) end, { silent = true } },
 
-			vim.keymap.set({ "i", "s" }, "<C-E>", function()
-				if ls.choice_active() then
-					ls.change_choice(1)
-				end
-			end, { silent = true })
+					{ { "i",        "s" }, "<C-E>", function()
+						if ls.choice_active() then
+							ls.change_choice(1)
+						end
+					end, { silent = true }
+					}
+				}
+			})
 		end
 
 	},
 
-	{
-		"lewis6991/gitsigns.nvim",
-		opts = {
-			signs = {
-				add          = { text = "│" },
-				change       = { text = "│" },
-				delete       = { text = "_" },
-				topdelete    = { text = "‾" },
-				changedelete = { text = "~" },
-				untracked    = { text = "┆" },
-			},
-
-			on_attach = function(bufnr)
-				local gs = package.loaded.gitsigns
-
-				local function map(mode, l, r, opts)
-					opts = opts or {}
-					opts.buffer = bufnr
-					vim.keymap.set(mode, l, r, opts)
-				end
-
-				-- Navigation
-				map("n", "]c", function()
-					if vim.wo.diff then return "]c" end
-					vim.schedule(function() gs.next_hunk() end)
-					return "<Ignore>"
-				end, { expr = true })
-
-				map("n", "[c", function()
-					if vim.wo.diff then return "[c" end
-					vim.schedule(function() gs.prev_hunk() end)
-					return "<Ignore>"
-				end, { expr = true })
-			end
-		}
-	},
-	"kdheepak/lazygit.nvim",
 	"sindrets/diffview.nvim",
 
 	"lervag/vimtex",
@@ -165,17 +133,22 @@ return {
 		init = function()
 			local harpoon = require("harpoon")
 
-			vim.keymap.set("n", "<leader>a", function() harpoon:list():append() end)
-			vim.keymap.set("n", "<C-e>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
+			Utils.set_custom_maps({
+				[""] =
+				{
+					{ "n", "<leader>a", function() harpoon:list():append() end },
+					{ "n", "<C-e>",     function() harpoon.ui:toggle_quick_menu(harpoon:list()) end },
 
-			vim.keymap.set("n", "<M-h>", function() harpoon:list():select(1) end)
-			vim.keymap.set("n", "<M-j>", function() harpoon:list():select(2) end)
-			vim.keymap.set("n", "<M-k>", function() harpoon:list():select(3) end)
-			vim.keymap.set("n", "<M-l>", function() harpoon:list():select(4) end)
+					{ "n", "<M-h>",     function() harpoon:list():select(1) end },
+					{ "n", "<M-j>",     function() harpoon:list():select(2) end },
+					{ "n", "<M-k>",     function() harpoon:list():select(3) end },
+					{ "n", "<M-l>",     function() harpoon:list():select(4) end },
 
-			-- Toggle previous & next buffers stored within Harpoon list
-			vim.keymap.set("n", "<C-S-P>", function() harpoon:list():prev({ --[[ui_nav_wrap = true ]] }) end)
-			vim.keymap.set("n", "<C-S-N>", function() harpoon:list():next({ --[[ui_nav_wrap = true]] }) end)
+					-- Toggle previous & next buffers> stored within Harpoon list
+					{ "n", "<leader>P", function() harpoon:list():prev({ --[[ui_nav_wrap = true ]] }) end },
+					{ "n", "<leader>N", function() harpoon:list():next({ --[[ui_nav_wrap = true]] }) end },
+				}
+			})
 		end
 	},
 

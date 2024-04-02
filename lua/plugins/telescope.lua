@@ -1,9 +1,5 @@
-local function MappingsToKeys()
-	local keys = {}
-
-	local leader = "f"
-
-	local mappings = {
+local mappings = {
+	["<leader>f"] = {
 		{ { "n" }, "<leader>", function() require("telescope.builtin").builtin() end,                   { desc = "Open telescope picker list" } },
 		{ { "n" }, "g",        function() require("telescope.builtin").live_grep() end,                 { desc = "Open telescope live grep" } },
 		{ { "n" }, "/",        function() require("telescope.builtin").current_buffer_fuzzy_find() end, { desc = "Open telescope current buffer fuzzy find" } },
@@ -16,19 +12,7 @@ local function MappingsToKeys()
 		{ { "n" }, "r",        function() require("telescope.builtin").oldfiles() end,                  { desc = "Open telescope old files" } },
 		{ { "n" }, "p",        function() require("telescope").extensions.projects.projects() end,      { desc = "Open telescope projects" } },
 	}
-
-	for i, v in ipairs(mappings) do
-		local temp = {}
-		temp[1] = "<leader>" .. leader .. v[2]
-		temp[2] = v[3]
-		v[4].mode = v[1]
-		temp[3] = v[4]
-		keys[i] = temp
-	end
-
-	return keys
-end
-
+}
 
 return {
 	"nvim-telescope/telescope.nvim",
@@ -59,6 +43,8 @@ return {
 		for _, e in pairs(telescope_extensions) do
 			require("telescope").load_extension(e)
 		end
+
+		Utils.set_custom_maps(mappings)
 	end,
 
 	opts = {
@@ -79,6 +65,4 @@ return {
 			},
 		}
 	},
-
-	keys = MappingsToKeys()
 }

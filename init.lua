@@ -1,3 +1,5 @@
+Utils = require("azmon.utils")
+
 local modules = {
 	"options",
 	"lazy",
