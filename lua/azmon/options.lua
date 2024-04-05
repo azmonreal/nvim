@@ -1,14 +1,14 @@
-vim.opt.undofile = true
+vim.o.undofile = true
 
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
+vim.o.ignorecase = true
+vim.o.smartcase = true
 
-vim.opt.number = true
-vim.opt.relativenumber = true
-vim.opt.tabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.laststatus = 3
-vim.opt.winbar = "%f"
+vim.o.number = true
+vim.o.relativenumber = true
+vim.o.tabstop = 4
+vim.o.shiftwidth = 4
+vim.o.laststatus = 3
+vim.o.winbar = "%f"
 
 vim.g.mapleader = " "
 
@@ -19,6 +19,9 @@ vim.o.foldenable = true
 
 -- vim.o.foldmethod = "expr"
 -- vim.o.foldexpr = "nvim_treesitter#foldexpr()"
+
+vim.o.wrap = false
+vim.o.linebreak = true
 
 vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 
