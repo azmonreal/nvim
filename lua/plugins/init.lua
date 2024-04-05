@@ -112,8 +112,6 @@ return {
 	},
 	--"Civitasv/cmake-tools.nvim",
 
-	"numToStr/Comment.nvim",
-
 	"christoomey/vim-tmux-navigator",
 
 	{
