@@ -83,6 +83,12 @@ return {
 					item.abbr = item.abbr
 					return item
 				end,
+			},
+
+			view = {
+				entries = {
+					follow_cursor = true
+				}
 			}
 
 		})
