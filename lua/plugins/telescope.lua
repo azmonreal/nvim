@@ -54,14 +54,15 @@ return {
 				prompt_position = "top",
 			},
 			path_display = "smart",
-
+			border = false,
 		},
 		pickers = {
 			builtin = {
 				previewer = false
 			},
 			help_tags = {
-				theme = "dropdown"
+				theme = "dropdown",
+				border = false,
 			},
 		}
 	},
