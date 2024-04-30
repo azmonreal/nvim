@@ -22,4 +22,3 @@ Utils.set_custom_maps({
 })
 
 
-vim.g.vimtex_view_method = "zathura"
