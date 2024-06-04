@@ -10,6 +10,12 @@ vim.o.shiftwidth = 4
 vim.o.laststatus = 3
 vim.o.winbar = "%f"
 
+vim.o.cursorline = true
+vim.o.cursorlineopt = "number"
+
+vim.o.breakindent = true
+vim.opt.breakindentopt = { "list:-1"}
+
 vim.g.mapleader = " "
 
 vim.o.foldcolumn = "1" -- '0' is not bad

@@ -1,6 +1,5 @@
-vim.wo.conceallevel = 2
-vim.wo.conceallevel = 2
-vim.wo.wrap = true
+vim.wo[0][0].conceallevel = 2
+vim.wo[0][0].wrap = true
 
 Utils.set_custom_maps({
 	[""] = {
@@ -10,7 +9,6 @@ Utils.set_custom_maps({
 		{ "n", "gk", "k" },
 	}
 })
-vim.wo.wrap = true
 
 Utils.set_custom_maps({
 	[""] = {

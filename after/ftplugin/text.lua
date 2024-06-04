@@ -1,4 +1,4 @@
-vim.wo.wrap = true
+vim.wo[0][0].wrap = true
 
 Utils.set_custom_maps({
 	[""] = {
