@@ -75,7 +75,6 @@ return {
 					}
 				}
 			})
-		end
 
 			ls.config.setup({
 				store_selection_keys = "<C-K>",
