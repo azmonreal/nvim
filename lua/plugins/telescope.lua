@@ -27,10 +27,29 @@ return {
 	},
 
 	config = function(_, opts)
+		local telescope = require("telescope")
+		local actions = require("telescope.actions")
+
 		opts.defaults.file_sorter = require("telescope.sorters").get_fuzzy_file
 		opts.defaults.generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter
 
-		require("telescope").setup(opts)
+		opts.defaults.mappings = {
+			i = {
+				["<C-n>"] = actions.cycle_history_next,
+				["<C-p>"] = actions.cycle_history_prev,
+
+				["<C-j>"] = actions.move_selection_next,
+				["<C-k>"] = actions.move_selection_previous,
+			},
+			n = {
+				["<esc>"] = actions.close,
+				["j"] = actions.move_selection_next,
+				["k"] = actions.move_selection_previous,
+				["q"] = actions.close,
+			},
+		}
+
+		telescope.setup(opts)
 
 		local telescope_extensions = {
 			"projects",
@@ -41,7 +60,7 @@ return {
 		}
 
 		for _, e in pairs(telescope_extensions) do
-			require("telescope").load_extension(e)
+			telescope.load_extension(e)
 		end
 
 		Utils.set_custom_maps(mappings)
