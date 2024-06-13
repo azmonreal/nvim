@@ -128,8 +128,6 @@ return {
 	},
 	--"Civitasv/cmake-tools.nvim",
 
-	"christoomey/vim-tmux-navigator",
-
 	{
 		"mrcjkb/rustaceanvim",
 		version = "^3",
