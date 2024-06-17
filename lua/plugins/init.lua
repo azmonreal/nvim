@@ -111,7 +111,6 @@ return {
 			silent_chdir = true,
 			scope_chdir = "global", -- "global" | "tab" | "win"
 			datapath = vim.fn.stdpath("data"),
-		}
 		},
 		config = function(_, opt)
 			require("project_nvim").setup(opt)
