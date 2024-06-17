@@ -168,4 +168,23 @@ return {
 		"j-hui/fidget.nvim",
 		opts = {}
 	},
+	{
+		"stevearc/oil.nvim",
+		opts = {
+			keymaps = {
+				["q"] = "actions.close"
+			}
+		},
+
+		config = function(_, opts)
+			require("oil").setup(opts)
+
+			vim.keymap.set("n", "-", "<cmd>Oil<CR>", { desc = "Open file explorer" })
+			vim.keymap.set("n", "<leader>-", "<cmd>Oil --float<CR>", { desc = "Open file explorer in float" })
+		end,
+
+		-- Optional dependencies
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+
+	},
 }
