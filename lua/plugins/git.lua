@@ -36,6 +36,9 @@ return {
 	},
 	{
 		"kdheepak/lazygit.nvim",
+		config = function()
+			vim.keymap.set({ "n" }, "<leader>gt", function() vim.cmd([[LazyGit]]) end, { desc = "" })
+		end
 	},
 	{
 		"tpope/vim-fugitive",

@@ -112,6 +112,12 @@ return {
 			scope_chdir = "global", -- "global" | "tab" | "win"
 			datapath = vim.fn.stdpath("data"),
 		}
+		},
+		config = function(_, opt)
+			require("project_nvim").setup(opt)
+
+			vim.keymap.set({ "n" }, "<leader>cd", require("project_nvim.project").on_buf_enter, { desc = "" })
+		end
 	},
 
 	"nvim-lua/plenary.nvim",
