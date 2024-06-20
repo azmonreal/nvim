@@ -1,6 +1,6 @@
 local mappings = {
 	[""] = {
-		{ { "n" }, "<leader>bf", function() vim.lsp.buf.format({ async = true }) end,                                  { desc = "Run lsp format command on current buffer" } },
+		-- { { "n" }, "<leader>bf", function() vim.lsp.buf.format({ async = true }) end,                                  { desc = "Run lsp format command on current buffer" } },
 		{ { "n" }, "gD",         vim.lsp.buf.declaration,                                                              { desc = "Go to symbol declaration" } },
 		{ { "n" }, "gd",         vim.lsp.buf.definition,                                                               { desc = "Go to symbol definition" } },
 		{ { "n" }, "K",          vim.lsp.buf.hover,                                                                    { desc = "Show hover window" } },
@@ -44,6 +44,17 @@ return {
 			handlers = {
 				function(server_name)
 					require("lspconfig")[server_name].setup({})
+				end,
+
+				["tsserver"] = function()
+					require("lspconfig").tsserver.setup({
+						init_options = {
+							hostInfo = "neovim",
+							preferences = {
+								importModuleSpecifierPreference = "non-relative",
+							}
+						}
+					})
 				end,
 
 				["lua_ls"] = function()

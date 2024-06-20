@@ -192,4 +192,49 @@ return {
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 
 	},
+	{
+		"stevearc/conform.nvim",
+		opts = {
+			format_on_save = nil,
+			quiet = true,
+			formatters_by_ft = {
+				typescript = { "prettierd" },
+				typescriptreact = { "prettierd" },
+				javascript = { "prettierd" },
+				javascriptreact = { "prettierd" },
+				json = { "prettierd" },
+				html = { "prettierd" },
+				css = { "prettierd" },
+				scss = { "prettierd" },
+				markdown = { "prettierd" },
+				yaml = { "prettierd" },
+			},
+		},
+		config = function(_, opts)
+			local conform = require("conform")
+
+			conform.setup(opts)
+
+			vim.keymap.set("n", "<leader>bf", function() conform.format({ async = true, lsp_format = "fallback" }) end, { desc = "Run formatting, using LSP as fallback" })
+		end
+	},
+	{
+		"windwp/nvim-ts-autotag",
+		opts = {
+			opts = {
+				-- Defaults
+				enable_close = true, -- Auto close tags
+				enable_rename = true, -- Auto rename pairs of tags
+				enable_close_on_slash = false -- Auto close on trailing </
+			},
+			-- Also override individual filetype configs, these take priority.
+			-- Empty by default, useful if one of the "opts" global settings
+			-- doesn't work well in a specific filetype
+			per_filetype = {
+				["html"] = {
+					enable_close = false
+				}
+			}
+		}
+	},
 }
