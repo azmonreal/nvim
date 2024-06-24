@@ -16,7 +16,7 @@ return {
 	{
 		"nvim-treesitter/nvim-treesitter",
 		main = "nvim-treesitter.configs",
-		build = "TSBuild",
+		build = "TSUpdate",
 		opts = {
 			highlight = {
 				enable = true,
@@ -135,7 +135,7 @@ return {
 
 	{
 		"mrcjkb/rustaceanvim",
-		version = "^3",
+		version = "^4",
 		ft = { "rust" },
 	},
 
@@ -143,17 +143,14 @@ return {
 		"ThePrimeagen/harpoon",
 		branch = "harpoon2",
 		dependencies = { "nvim-lua/plenary.nvim" },
-		config = function()
-			local harpoon = require("harpoon")
-			harpoon:setup({})
-		end,
+		config = true,
 		init = function()
 			local harpoon = require("harpoon")
 
 			Utils.set_custom_maps({
 				[""] =
 				{
-					{ "n", "<leader>a", function() harpoon:list():append() end },
+					{ "n", "<leader>a", function() harpoon:list():add() end },
 					{ "n", "<C-e>",     function() harpoon.ui:toggle_quick_menu(harpoon:list()) end },
 
 					{ "n", "<M-h>",     function() harpoon:list():select(1) end },
