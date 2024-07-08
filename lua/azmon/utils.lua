@@ -4,9 +4,12 @@ local M = {}
 M.set_custom_maps = function(customMaps)
 	for lleader, map_group in pairs(customMaps) do
 		for _, keymap in pairs(map_group) do
-			local mode, rh, lf, opts = unpack(keymap)
+			local mode, rhs, lf, opts = unpack(keymap)
+			rhs = type(rhs) == "string" and { rhs } or rhs
 
-			vim.keymap.set(mode, lleader .. rh, lf, opts)
+			for _, rh in ipairs(rhs) do
+				vim.keymap.set(mode, lleader .. rh, lf, opts)
+			end
 		end
 	end
 end

@@ -1,6 +1,6 @@
 local custom_maps = {
 	[""] = {
-		{ { "n" }, "<C-_>",      "<cmd>noh<CR>",                               { desc = "Stop highlighting search pattern" } },
+		{ { "n" }, { "<C-_>", "<C-/>" }, "<cmd>noh<CR>",                  { desc = "Stop highlighting search pattern" } },
 		{ { "n" }, "]b",         "<cmd>bn<CR>",                                { desc = "Switch to next buffer" } },
 		{ { "n" }, "[b",         "<cmd>bp<CR>",                                { desc = "Switch to previous buffer" } },
 
