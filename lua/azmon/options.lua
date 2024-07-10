@@ -33,6 +33,12 @@ vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 
 vim.o.pumheight = 10
 
+vim.filetype.add({
+	extension = {
+		xaml = 'xml'
+	},
+})
+
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "*",
   callback = function()
