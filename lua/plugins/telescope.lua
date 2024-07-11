@@ -11,6 +11,7 @@ local mappings = {
 		{ { "n" }, "f",        function() require("telescope.builtin").find_files() end,                { desc = "Open telescope file list" } },
 		{ { "n" }, "r",        function() require("telescope.builtin").oldfiles() end,                  { desc = "Open telescope old files" } },
 		{ { "n" }, "p",        function() require("telescope").extensions.projects.projects() end,      { desc = "Open telescope projects" } },
+		{ { "n" }, "s",        function() require("telescope.builtin").lsp_document_symbols() end,      { desc = "Open telescope projects" } },
 	}
 }
 
