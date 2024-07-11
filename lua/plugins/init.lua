@@ -212,15 +212,19 @@ return {
 
 			conform.setup(opts)
 
-			vim.keymap.set("n", "<leader>bf", function() conform.format({ async = true, lsp_format = "fallback" }) end, { desc = "Run formatting, using LSP as fallback" })
+			vim.keymap.set({"n", "v"}, "<leader>bf", function() conform.format({ async = true, lsp_format = "fallback" }) end, { desc = "Run formatting, using LSP as fallback" })
 		end
 	},
 	{
 		"mfussenegger/nvim-lint",
 		config = function()
-			require("lint").linters_by_ft = {
+			local lint = require("lint")
+
+			lint.linters_by_ft = {
 				python = { "mypy", }
 			}
+
+			vim.list_extend(lint.linters.mypy.args , { "--strict", })
 
 			vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 				callback = function()
