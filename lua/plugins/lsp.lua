@@ -38,7 +38,7 @@ return {
 		},
 		opts = {
 			ensure_installed = {
-				"lua_ls", "clangd", "texlab", "pylsp", "rust_analyzer"
+				"lua_ls", "clangd", "texlab", "rust_analyzer", "basedpyright"
 			},
 			automatic_installation = true,
 			handlers = {
@@ -52,6 +52,15 @@ return {
 							hostInfo = "neovim",
 							preferences = {
 								importModuleSpecifierPreference = "non-relative",
+							}
+						}
+					})
+				end,
+				["basedpyright"] = function()
+					require("lspconfig").basedpyright.setup({
+						settings = {
+							basedpyright = {
+								typeCheckingMode = "standard",
 							}
 						}
 					})
