@@ -12,4 +12,3 @@ for _, v in pairs(modules) do
 		vim.notify(error)
 	end
 end
-

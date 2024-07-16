@@ -4,7 +4,7 @@ return {
 		"rcarriga/nvim-dap-ui",
 		"nvim-neotest/nvim-nio",
 	},
-	config = function()
+	config = function ()
 		require("dapui").setup()
 		local dap = require("dap")
 		dap.adapters.lldb = {
@@ -18,7 +18,7 @@ return {
 				name = "Launch",
 				type = "lldb",
 				request = "launch",
-				program = function()
+				program = function ()
 					return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
 				end,
 				cwd = "${workspaceFolder}",

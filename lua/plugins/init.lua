@@ -47,16 +47,16 @@ return {
 	{
 		"L3MON4D3/LuaSnip",
 		build = "make install_jsregexp",
-		config = function()
+		config = function ()
 			local ls = require("luasnip")
 
 			Utils.set_custom_maps({
 				[""] = {
-					{ { "i" },      "<C-K>", function() ls.expand() end, { silent = true } },
-					{ { "i", "s" }, "<C-L>", function() ls.jump(1) end,  { silent = true } },
-					{ { "i", "s" }, "<C-J>", function() ls.jump(-1) end, { silent = true } },
+					{ { "i" },      "<C-K>", function () ls.expand() end, { silent = true } },
+					{ { "i", "s" }, "<C-L>", function () ls.jump(1) end,  { silent = true } },
+					{ { "i", "s" }, "<C-J>", function () ls.jump(-1) end, { silent = true } },
 
-					{ { "i",        "s" }, "<C-E>", function()
+					{ { "i",        "s" }, "<C-E>", function ()
 						if ls.choice_active() then
 							ls.change_choice(1)
 						end
@@ -76,7 +76,7 @@ return {
 
 			Utils["luasnip"] = {
 				get_visual =
-					function(args, parent)
+					function (args, parent)
 						if (#parent.snippet.env.LS_SELECT_RAW > 0) then
 							return sn(nil, i(1, parent.snippet.env.LS_SELECT_RAW))
 						else -- If LS_SELECT_RAW is empty, return a blank insert node
@@ -93,7 +93,7 @@ return {
 
 	{
 		"lervag/vimtex",
-		config = function()
+		config = function ()
 			vim.g.vimtex_view_method = "zathura"
 		end
 	},
@@ -112,7 +112,7 @@ return {
 			scope_chdir = "global", -- "global" | "tab" | "win"
 			datapath = vim.fn.stdpath("data"),
 		},
-		config = function(_, opt)
+		config = function (_, opt)
 			require("project_nvim").setup(opt)
 
 			vim.keymap.set({ "n" }, "<leader>cd", require("project_nvim.project").on_buf_enter, { desc = "" })
@@ -144,23 +144,23 @@ return {
 		branch = "harpoon2",
 		dependencies = { "nvim-lua/plenary.nvim" },
 		config = true,
-		init = function()
+		init = function ()
 			local harpoon = require("harpoon")
 
 			Utils.set_custom_maps({
 				[""] =
 				{
-					{ "n", "<leader>a", function() harpoon:list():add() end },
-					{ "n", "<C-e>",     function() harpoon.ui:toggle_quick_menu(harpoon:list()) end },
+					{ "n", "<leader>a", function () harpoon:list():add() end },
+					{ "n", "<C-e>",     function () harpoon.ui:toggle_quick_menu(harpoon:list()) end },
 
-					{ "n", "<M-h>",     function() harpoon:list():select(1) end },
-					{ "n", "<M-j>",     function() harpoon:list():select(2) end },
-					{ "n", "<M-k>",     function() harpoon:list():select(3) end },
-					{ "n", "<M-l>",     function() harpoon:list():select(4) end },
+					{ "n", "<M-h>",     function () harpoon:list():select(1) end },
+					{ "n", "<M-j>",     function () harpoon:list():select(2) end },
+					{ "n", "<M-k>",     function () harpoon:list():select(3) end },
+					{ "n", "<M-l>",     function () harpoon:list():select(4) end },
 
 					-- Toggle previous & next buffers> stored within Harpoon list
-					{ "n", "<leader>P", function() harpoon:list():prev({ --[[ui_nav_wrap = true ]] }) end },
-					{ "n", "<leader>N", function() harpoon:list():next({ --[[ui_nav_wrap = true]] }) end },
+					{ "n", "<leader>P", function () harpoon:list():prev({ --[[ui_nav_wrap = true ]] }) end },
+					{ "n", "<leader>N", function () harpoon:list():next({ --[[ui_nav_wrap = true]] }) end },
 				}
 			})
 		end
@@ -178,7 +178,7 @@ return {
 			}
 		},
 
-		config = function(_, opts)
+		config = function (_, opts)
 			require("oil").setup(opts)
 
 			vim.keymap.set("n", "-", "<cmd>Oil<CR>", { desc = "Open file explorer" })
@@ -207,27 +207,29 @@ return {
 				yaml = { "prettier" },
 			},
 		},
-		config = function(_, opts)
+		config = function (_, opts)
 			local conform = require("conform")
 
 			conform.setup(opts)
 
-			vim.keymap.set({"n", "v"}, "<leader>bf", function() conform.format({ async = true, lsp_format = "fallback" }) end, { desc = "Run formatting, using LSP as fallback" })
+			vim.keymap.set({ "n", "v" }, "<leader>bf",
+				function () conform.format({ async = true, lsp_format = "fallback" }) end,
+				{ desc = "Run formatting, using LSP as fallback" })
 		end
 	},
 	{
 		"mfussenegger/nvim-lint",
-		config = function()
+		config = function ()
 			local lint = require("lint")
 
 			lint.linters_by_ft = {
 				python = { "mypy", }
 			}
 
-			vim.list_extend(lint.linters.mypy.args , { "--strict", })
+			vim.list_extend(lint.linters.mypy.args, { "--strict", })
 
 			vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-				callback = function()
+				callback = function ()
 					-- try_lint without arguments runs the linters defined in `linters_by_ft`
 					-- for the current filetype
 					require("lint").try_lint()

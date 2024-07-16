@@ -14,7 +14,7 @@ vim.o.cursorline = true
 vim.o.cursorlineopt = "number"
 
 vim.o.breakindent = true
-vim.opt.breakindentopt = { "list:-1"}
+vim.opt.breakindentopt = { "list:-1" }
 
 vim.g.mapleader = " "
 
@@ -35,34 +35,34 @@ vim.o.pumheight = 10
 
 vim.filetype.add({
 	extension = {
-		xaml = 'xml'
+		xaml = "xml"
 	},
 })
 
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = "*",
-  callback = function()
-    vim.opt_local.formatoptions:remove({ 'o' })
-  end,
+	pattern = "*",
+	callback = function ()
+		vim.opt_local.formatoptions:remove({ "o" })
+	end,
 })
 
 -- vim.o.statuscolumn = '%=%l%s%#FoldColumn#%{foldlevel(v:lnum) > foldlevel(v:lnum - 1) ? (foldclosed(v:lnum) == -1 ? " " : " ") : "  " }%*'
 
 vim.api.nvim_create_autocmd("TextYankPost", {
-	callback = function()
+	callback = function ()
 		vim.highlight.on_yank({ timeout = 500 })
 	end
 })
 
 vim.api.nvim_create_autocmd("BufReadPost", {
-	callback = function(args)
-    local valid_line = vim.fn.line([['"]]) >= 1 and vim.fn.line([['"]]) < vim.fn.line('$')
-    local not_commit = vim.b[args.buf].filetype ~= 'commit'
+	callback = function (args)
+		local valid_line = vim.fn.line([['"]]) >= 1 and vim.fn.line([['"]]) < vim.fn.line("$")
+		local not_commit = vim.b[args.buf].filetype ~= "commit"
 
-    if valid_line and not_commit then
-      vim.cmd([[normal! g`"]])
-    end
-  end,
+		if valid_line and not_commit then
+			vim.cmd([[normal! g`"]])
+		end
+	end,
 })
 
 vim.api.nvim_create_autocmd("FileType", {
@@ -77,7 +77,7 @@ vim.api.nvim_create_autocmd("FileType", {
 		"qf",
 		"query",
 	},
-	callback = function()
+	callback = function ()
 		vim.keymap.set("n", "q", vim.cmd.close, { desc = "Close the current buffer", buffer = true })
 	end,
 })

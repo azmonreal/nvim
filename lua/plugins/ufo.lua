@@ -5,7 +5,7 @@ return {
 		{
 			"luukvbaal/statuscol.nvim",
 			branch = "0.10",
-			config = function()
+			config = function ()
 				local builtin = require("statuscol.builtin")
 				require("statuscol").setup({
 
@@ -32,11 +32,11 @@ return {
 		--end,
 	},
 
-	init = function()
-		vim.keymap.set("n", "zR", function()
+	init = function ()
+		vim.keymap.set("n", "zR", function ()
 			require("ufo").openAllFolds()
 		end)
-		vim.keymap.set("n", "zM", function()
+		vim.keymap.set("n", "zM", function ()
 			require("ufo").closeAllFolds()
 		end)
 	end,

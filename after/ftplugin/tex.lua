@@ -18,5 +18,3 @@ Utils.set_custom_maps({
 		{ "n", "gk", "k" },
 	}
 })
-
-

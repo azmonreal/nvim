@@ -1,17 +1,17 @@
 local mappings = {
 	["<leader>f"] = {
-		{ { "n" }, "<leader>", function() require("telescope.builtin").builtin() end,                   { desc = "Open telescope picker list" } },
-		{ { "n" }, "g",        function() require("telescope.builtin").live_grep() end,                 { desc = "Open telescope live grep" } },
-		{ { "n" }, "/",        function() require("telescope.builtin").current_buffer_fuzzy_find() end, { desc = "Open telescope current buffer fuzzy find" } },
-		{ { "n" }, "b",        function() require("telescope.builtin").buffers() end,                   { desc = "Open telescope buffer list" } },
-		{ { "n" }, "h",        function() require("telescope.builtin").help_tags() end,                 { desc = "Open telescope help search" } },
-		{ { "n" }, "k",        function() require("telescope.builtin").keymaps() end,                   { desc = "Open telescope keymap list" } },
-		{ { "n" }, "r",        function() require("telescope.builtin").registers() end,                 { desc = "Open telescope register list" } },
-		{ { "n" }, "j",        function() require("telescope.builtin").jumplist() end,                  { desc = "Open telescope jumplist" } },
-		{ { "n" }, "f",        function() require("telescope.builtin").find_files() end,                { desc = "Open telescope file list" } },
-		{ { "n" }, "r",        function() require("telescope.builtin").oldfiles() end,                  { desc = "Open telescope old files" } },
-		{ { "n" }, "p",        function() require("telescope").extensions.projects.projects() end,      { desc = "Open telescope projects" } },
-		{ { "n" }, "s",        function() require("telescope.builtin").lsp_document_symbols() end,      { desc = "Open telescope projects" } },
+		{ { "n" }, "<leader>", function () require("telescope.builtin").builtin() end,                   { desc = "Open telescope picker list" } },
+		{ { "n" }, "g",        function () require("telescope.builtin").live_grep() end,                 { desc = "Open telescope live grep" } },
+		{ { "n" }, "/",        function () require("telescope.builtin").current_buffer_fuzzy_find() end, { desc = "Open telescope current buffer fuzzy find" } },
+		{ { "n" }, "b",        function () require("telescope.builtin").buffers() end,                   { desc = "Open telescope buffer list" } },
+		{ { "n" }, "h",        function () require("telescope.builtin").help_tags() end,                 { desc = "Open telescope help search" } },
+		{ { "n" }, "k",        function () require("telescope.builtin").keymaps() end,                   { desc = "Open telescope keymap list" } },
+		{ { "n" }, "r",        function () require("telescope.builtin").registers() end,                 { desc = "Open telescope register list" } },
+		{ { "n" }, "j",        function () require("telescope.builtin").jumplist() end,                  { desc = "Open telescope jumplist" } },
+		{ { "n" }, "f",        function () require("telescope.builtin").find_files() end,                { desc = "Open telescope file list" } },
+		{ { "n" }, "r",        function () require("telescope.builtin").oldfiles() end,                  { desc = "Open telescope old files" } },
+		{ { "n" }, "p",        function () require("telescope").extensions.projects.projects() end,      { desc = "Open telescope projects" } },
+		{ { "n" }, "s",        function () require("telescope.builtin").lsp_document_symbols() end,      { desc = "Open telescope projects" } },
 	}
 }
 
@@ -27,7 +27,7 @@ return {
 		"tsakirist/telescope-lazy.nvim",
 	},
 
-	config = function(_, opts)
+	config = function (_, opts)
 		local telescope = require("telescope")
 		local actions = require("telescope.actions")
 

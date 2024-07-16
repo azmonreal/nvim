@@ -36,13 +36,13 @@ return {
 
 		"saadparwaiz1/cmp_luasnip",
 	},
-	config = function()
+	config = function ()
 		local cmp = require("cmp")
 
 		cmp.setup({
 			snippet = {
 				-- REQUIRED - you must specify a snippet engine
-				expand = function(args)
+				expand = function (args)
 					require("luasnip").lsp_expand(args.body) -- For `luasnip` users.
 				end,
 			},
@@ -71,7 +71,7 @@ return {
 				}),
 			formatting = {
 				fields = { "kind", "abbr", "menu" },
-				format = function(_, item)
+				format = function (_, item)
 					local kind = item.kind
 					item.kind = cmp_kinds[item.kind] or ""
 					item.menu = kind
