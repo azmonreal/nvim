@@ -265,4 +265,24 @@ return {
 		main = "ibl",
 		opts = {}
 	},
+	{
+		'stevearc/aerial.nvim',
+		opts = {
+			layout = {
+				width = 40,
+			}
+		},
+
+		config = function (_, opts)
+			require("aerial").setup(opts)
+
+			vim.keymap.set("n", "<leader>n", function () vim.cmd [[AerialToggle]] end)
+		end,
+
+		-- Optional dependencies
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter",
+			"nvim-tree/nvim-web-devicons"
+		},
+	}
 }
