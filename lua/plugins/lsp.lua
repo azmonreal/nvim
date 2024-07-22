@@ -26,6 +26,8 @@ vim.api.nvim_create_autocmd("LspAttach",
 	}
 )
 
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
 return {
 	{
 		"williamboman/mason-lspconfig",
@@ -43,11 +45,12 @@ return {
 			automatic_installation = true,
 			handlers = {
 				function (server_name)
-					require("lspconfig")[server_name].setup({})
+					require("lspconfig")[server_name].setup({ capabilities = capabilities, })
 				end,
 
 				["tsserver"] = function ()
 					require("lspconfig").tsserver.setup({
+						capabilities = capabilities,
 						init_options = {
 							hostInfo = "neovim",
 							preferences = {
@@ -58,6 +61,7 @@ return {
 				end,
 				["basedpyright"] = function ()
 					require("lspconfig").basedpyright.setup({
+						capabilities = capabilities,
 						settings = {
 							basedpyright = {
 								reportUnkownVariable = false,
@@ -70,6 +74,7 @@ return {
 				["lua_ls"] = function ()
 					require("neodev").setup()
 					require("lspconfig").lua_ls.setup {
+						capabilities = capabilities,
 						settings = {
 							Lua = {
 								workspace = {
@@ -86,6 +91,7 @@ return {
 				end,
 				["clangd"] = function ()
 					require("lspconfig").clangd.setup({
+						capabilities = capabilities,
 						cmd = {
 							"clangd",
 							"--offset-encoding=utf-16",
