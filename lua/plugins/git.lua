@@ -35,6 +35,7 @@ return {
 	},
 	{
 		"kdheepak/lazygit.nvim",
+		enabled = false,
 		config = function ()
 			vim.keymap.set({ "n" }, "<leader>gt", function () vim.cmd([[LazyGit]]) end, { desc = "" })
 		end

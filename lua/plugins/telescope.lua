@@ -27,6 +27,12 @@ return {
 		"tsakirist/telescope-lazy.nvim",
 	},
 
+	cmd = "Telescope",
+
+	init = function ()
+		Utils.setKeymaps(mappings)
+	end,
+
 	config = function (_, opts)
 		local telescope = require("telescope")
 		local actions = require("telescope.actions")
@@ -63,8 +69,6 @@ return {
 		for _, e in pairs(telescope_extensions) do
 			telescope.load_extension(e)
 		end
-
-		Utils.setKeymaps(mappings)
 	end,
 
 	opts = {

@@ -36,6 +36,7 @@ return {
 
 		"saadparwaiz1/cmp_luasnip",
 	},
+	event = { "InsertEnter", "CmdlineEnter" },
 	config = function ()
 		local cmp = require("cmp")
 
@@ -99,7 +100,7 @@ return {
 			}, {
 				{
 					name = "cmdline",
-					option = { ignore_cmds = { "Man", "!" } }
+					option = { ignore_cmds = { "Man", "!", "r!" } },
 				},
 				{ name = "buffer" },
 			})

@@ -38,6 +38,7 @@ return {
 			},
 			"neovim/nvim-lspconfig",
 		},
+		event = { "BufReadPre", "BufNewFile" },
 		opts = {
 			ensure_installed = {
 				"lua_ls", "clangd", "texlab", "rust_analyzer", "basedpyright"

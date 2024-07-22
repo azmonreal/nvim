@@ -28,6 +28,7 @@ return {
 		"nvim-treesitter/nvim-treesitter",
 		main = "nvim-treesitter.configs",
 		build = "TSUpdate",
+		event = { "BufReadPost", "BufNewFile" },
 		opts = {
 			highlight = {
 				enable = true,
@@ -52,12 +53,14 @@ return {
 
 	{
 		"zbirenbaum/copilot.lua",
+		event = { "InsertEnter" },
 		config = true,
 	},
 
 	{
 		"L3MON4D3/LuaSnip",
 		build = "make install_jsregexp",
+		event = { "InsertEnter", "CmdlineEnter" },
 		config = function ()
 			local ls = require("luasnip")
 
@@ -90,7 +93,7 @@ return {
 					end
 			}
 
-			require("luasnip.loaders.from_lua").load({ paths = "./lua/snippets/" })
+			require("luasnip.loaders.from_lua").lazy_load({ paths = "./lua/snippets/" })
 		end
 	},
 
@@ -247,6 +250,7 @@ return {
 	},
 	{
 		"windwp/nvim-ts-autotag",
+		event = { "InsertEnter" },
 		opts = {
 			opts = {
 				-- Defaults
@@ -280,6 +284,7 @@ return {
 	},
 	{
 		"stevearc/aerial.nvim",
+		cmd = { "AerialToggle" },
 		opts = {
 			layout = {
 				min_width = 0.2,
@@ -287,11 +292,10 @@ return {
 			}
 		},
 
-		config = function (_, opts)
-			require("aerial").setup(opts)
-
+		init = function ()
 			vim.keymap.set("n", "<leader>n", function () vim.cmd [[AerialToggle]] end)
 		end,
+
 
 		-- Optional dependencies
 		dependencies = {

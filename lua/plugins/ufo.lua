@@ -24,7 +24,7 @@ return {
 			end,
 		},
 	},
-	--event = "BufReadPost",
+	event = { "BufReadPost", "BufNewFile" },
 	opts = {
 		open_fold_hl_timeout = 300,
 		--provider_selector = function(a)
