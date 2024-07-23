@@ -57,7 +57,11 @@ return {
 				["<C-e>"] = cmp.mapping.abort(),
 				["<CR>"] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
 			}),
-			sources = cmp.config.sources({
+			sources = cmp.config.sources(
+				{
+					name = "lazydev",
+					group_index = 0, -- set group index to 0 to skip loading LuaLS completions
+				}, {
 
 					{ name = "nvim_lsp" },
 					{ name = "luasnip" },

@@ -72,14 +72,13 @@ return {
 				end,
 
 				["lua_ls"] = function ()
-					require("neodev").setup()
 					require("lspconfig").lua_ls.setup {
 						capabilities = capabilities,
 						settings = {
 							Lua = {
-								workspace = {
-									checkThirdParty = false,
-								},
+								-- workspace = {
+								-- 	checkThirdParty = false,
+								-- },
 								diagnostics = {
 									neededFileStatus = {
 										["codestyle-check"] = "Any"
