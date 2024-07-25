@@ -277,7 +277,7 @@ return {
 		opts = {}
 	},
 	{
-		'stevearc/aerial.nvim',
+		"stevearc/aerial.nvim",
 		opts = {
 			layout = {
 				width = 40,
@@ -313,7 +313,7 @@ return {
 		},
 	},
 	{
-		'Vigemus/iron.nvim',
+		"Vigemus/iron.nvim",
 		tag = "v3.0",
 		main = "iron.core",
 		opts = function ()
@@ -335,7 +335,7 @@ return {
 					},
 					-- How the repl window will be displayed
 					-- See below for more information
-					repl_open_cmd = require('iron.view').split.vertical.botright(50)
+					repl_open_cmd = require("iron.view").split.vertical.botright(50)
 				},
 				-- Iron doesn't set keymaps by default anymore.
 				-- You can set them here or manually add keymaps to the functions in iron.core
