@@ -329,7 +329,7 @@ return {
 							command = { "zsh" }
 						},
 						python = {
-							command = { "python3" }, -- or { "ipython", "--no-autoindent" }
+							command = { "ipython", "--no-autoindent" },
 							format = require("iron.fts.common").bracketed_paste_python
 						}
 					},
