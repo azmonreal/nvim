@@ -1,18 +1,28 @@
 return {
 	"mfussenegger/nvim-dap",
 	dependencies = {
-		"rcarriga/nvim-dap-ui",
+		{
+			"mfussenegger/nvim-dap-python",
+			config = function ()
+				require("dap-python").setup("python")
+			end
+		},
+		{
+			"rcarriga/nvim-dap-ui",
+			opts = {}
+		},
 		"nvim-neotest/nvim-nio",
 	},
+	lazy = true,
 	config = function ()
-		require("dapui").setup()
 		local dap = require("dap")
+
 		dap.adapters.lldb = {
 			type = "executable",
 			command = "/usr/bin/lldb-vscode", -- adjust as needed, must be absolute path
 			name = "lldb"
 		}
-		local dap = require("dap")
+
 		dap.configurations.cpp = {
 			{
 				name = "Launch",
@@ -40,5 +50,4 @@ return {
 			},
 		}
 	end,
-
 }
