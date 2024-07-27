@@ -46,12 +46,12 @@ return {
 		config = function ()
 			Utils.set_custom_maps({
 				["<leader>g"] = {
-					{ { "n" }, "g", "<cmd>Git<CR>",        { desc = "Open telescope picker list" } },
-					{ { "n" }, "s", "<cmd>Git status<CR>", { desc = "Open telescope picker list" } },
-					{ { "n" }, "d", "<cmd>Git diff<CR>",   { desc = "Open telescope picker list" } },
-					{ { "n" }, "l", "<cmd>Git log<CR>",    { desc = "Open telescope picker list" } },
-					{ { "n" }, "a", "<cmd>Git add<CR>",    { desc = "Open telescope picker list" } },
-					{ { "n" }, "b", "<cmd>Git branch<CR>", { desc = "Open telescope picker list" } },
+					{ { "n" }, "g", "<cmd>Git<CR>",        { desc = "Git" } },
+					{ { "n" }, "s", "<cmd>Git status<CR>", { desc = "Git status" } },
+					{ { "n" }, "d", "<cmd>Git diff<CR>",   { desc = "Git diff" } },
+					{ { "n" }, "l", "<cmd>Git log<CR>",    { desc = "Git log" } },
+					{ { "n" }, "a", "<cmd>Git add<CR>",    { desc = "Git add" } },
+					{ { "n" }, "b", "<cmd>Git branch<CR>", { desc = "Git branch" } },
 					-- { { "n" }, "B", "<cmd>Git blame<CR>", { desc = "Open telescope picker list" } },
 				}
 			})
