@@ -73,7 +73,7 @@ return {
 			layout_config = {
 				prompt_position = "top",
 			},
-			path_display = "smart",
+			path_display = { "smart" },
 			border = false,
 		},
 		pickers = {
