@@ -61,20 +61,14 @@ return {
 		config = function ()
 			local ls = require("luasnip")
 
-			Utils.set_custom_maps({
-				[""] = {
-					{ { "i" },      "<C-K>", function () ls.expand() end, { silent = true } },
-					{ { "i", "s" }, "<C-L>", function () ls.jump(1) end,  { silent = true } },
-					{ { "i", "s" }, "<C-J>", function () ls.jump(-1) end, { silent = true } },
-
-					{ { "i",        "s" }, "<C-E>", function ()
-						if ls.choice_active() then
-							ls.change_choice(1)
-						end
-					end, { silent = true }
-					}
+			Utils.setKeymaps({
+				{
+					{ mode = { "i" },      "<C-K>", function () ls.expand() end },
+					{ mode = { "i", "s" }, "<C-L>", function () ls.jump(1) end },
+					{ mode = { "i", "s" }, "<C-J>", function () ls.jump(-1) end },
+					{ mode = { "i", "s" }, "<C-E>", function () if ls.choice_active() then ls.change_choice(1) end end }
 				}
-			})
+			}, { silent = true })
 
 			ls.config.setup({
 				store_selection_keys = "<C-K>",
@@ -158,20 +152,19 @@ return {
 		init = function ()
 			local harpoon = require("harpoon")
 
-			Utils.set_custom_maps({
-				[""] =
+			Utils.setKeymaps({
 				{
-					{ "n", "<leader>a", function () harpoon:list():add() end },
-					{ "n", "<C-e>",     function () harpoon.ui:toggle_quick_menu(harpoon:list()) end },
+					{ "<leader>a", function () harpoon:list():add() end },
+					{ "<C-e>",     function () harpoon.ui:toggle_quick_menu(harpoon:list()) end },
 
-					{ "n", "<M-h>",     function () harpoon:list():select(1) end },
-					{ "n", "<M-j>",     function () harpoon:list():select(2) end },
-					{ "n", "<M-k>",     function () harpoon:list():select(3) end },
-					{ "n", "<M-l>",     function () harpoon:list():select(4) end },
+					{ "<M-h>",     function () harpoon:list():select(1) end },
+					{ "<M-j>",     function () harpoon:list():select(2) end },
+					{ "<M-k>",     function () harpoon:list():select(3) end },
+					{ "<M-l>",     function () harpoon:list():select(4) end },
 
 					-- Toggle previous & next buffers> stored within Harpoon list
-					{ "n", "<leader>P", function () harpoon:list():prev({ --[[ui_nav_wrap = true ]] }) end },
-					{ "n", "<leader>N", function () harpoon:list():next({ --[[ui_nav_wrap = true]] }) end },
+					{ "<leader>P", function () harpoon:list():prev({ --[[ui_nav_wrap = true ]] }) end },
+					{ "<leader>N", function () harpoon:list():next({ --[[ui_nav_wrap = true]] }) end },
 				}
 			})
 		end
@@ -366,17 +359,14 @@ return {
 			}
 		end,
 		init = function ()
-			Utils.set_custom_maps(
-				{
-					[""] =
-					{
-						{ "n", "<leader>rs", "<cmd>IronRepl<cr>",    { desc = "Toggle Iron REPL" } },
-						{ "n", "<leader>rr", "<cmd>IronRestart<cr>", { desc = "Restart Iron REPL" } },
-						{ "n", "<leader>rf", "<cmd>IronFocus<cr>",   { desc = "Focus Iron REPL" } },
-						{ "n", "<leader>rh", "<cmd>IronHide<cr>",    { desc = "Hide Iron REPL" } },
-					}
+			Utils.setKeymaps({
+				["<leader>r"] = {
+					{ "s", "<cmd>IronRepl<cr>",    { desc = "Toggle Iron REPL" } },
+					{ "r", "<cmd>IronRestart<cr>", { desc = "Restart Iron REPL" } },
+					{ "f", "<cmd>IronFocus<cr>",   { desc = "Focus Iron REPL" } },
+					{ "h", "<cmd>IronHide<cr>",    { desc = "Hide Iron REPL" } },
 				}
-			)
+			})
 		end
 	},
 	{
@@ -386,37 +376,17 @@ return {
 		"folke/trouble.nvim",
 		opts = {}, -- for default options, refer to the configuration section for custom setup.
 		cmd = "Trouble",
-		keys = {
-			{
-				"<leader>xx",
-				"<cmd>Trouble diagnostics toggle<cr>",
-				desc = "Diagnostics (Trouble)",
-			},
-			{
-				"<leader>xX",
-				"<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
-				desc = "Buffer Diagnostics (Trouble)",
-			},
-			{
-				"<leader>cs",
-				"<cmd>Trouble symbols toggle focus=false<cr>",
-				desc = "Symbols (Trouble)",
-			},
-			{
-				"<leader>xl",
-				"<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
-				desc = "LSP Definitions / references / ... (Trouble)",
-			},
-			{
-				"<leader>xL",
-				"<cmd>Trouble loclist toggle<cr>",
-				desc = "Location List (Trouble)",
-			},
-			{
-				"<leader>xQ",
-				"<cmd>Trouble qflist toggle<cr>",
-				desc = "Quickfix List (Trouble)",
-			},
-		},
+		init = function ()
+			Utils.setKeymaps({
+				["<leader>x"] = {
+					{ "x", "<cmd>Trouble diagnostics toggle<cr>",                        desc = "Diagnostics (Trouble)", },
+					{ "X", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",           desc = "Buffer Diagnostics (Trouble)", },
+					{ "s", "<cmd>Trouble symbols toggle focus=false<cr>",                desc = "Symbols (Trouble)", },
+					{ "l", "<cmd>Trouble lsp toggle focus=false win.position=right<cr>", desc = "LSP Definitions / references / ... (Trouble)", },
+					{ "L", "<cmd>Trouble loclist toggle<cr>",                            desc = "Location List (Trouble)", },
+					{ "Q", "<cmd>Trouble qflist toggle<cr>",                             desc = "Quickfix List (Trouble)", },
+				}
+			})
+		end
 	}
 }
