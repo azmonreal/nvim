@@ -265,6 +265,15 @@ return {
 		}
 	},
 	{
+		"brenoprata10/nvim-highlight-colors",
+		enabled = false,
+		opts = {
+			render = "background", -- or 'foreground' or 'first_column'
+			enable_named_colors = true,
+			enable_tailwind = true,
+		}
+	},
+	{
 		"lukas-reineke/indent-blankline.nvim",
 		main = "ibl",
 		opts = {}
