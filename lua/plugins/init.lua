@@ -383,6 +383,13 @@ return {
 	},
 	{
 		"folke/trouble.nvim",
+		dependencies = {
+			{
+				"folke/todo-comments.nvim",
+				dependencies = { "nvim-lua/plenary.nvim" },
+				opts = true,
+			},
+		},
 		opts = {}, -- for default options, refer to the configuration section for custom setup.
 		cmd = "Trouble",
 		init = function ()
@@ -394,8 +401,9 @@ return {
 					{ "l", "<cmd>Trouble lsp toggle focus=false win.position=right<cr>", desc = "LSP Definitions / references / ... (Trouble)", },
 					{ "L", "<cmd>Trouble loclist toggle<cr>",                            desc = "Location List (Trouble)", },
 					{ "Q", "<cmd>Trouble qflist toggle<cr>",                             desc = "Quickfix List (Trouble)", },
+					{ "t", "<cmd>Trouble todo<cr>",                                      desc = "Quickfix List (Trouble)", },
 				}
 			})
 		end
-	}
+	},
 }
