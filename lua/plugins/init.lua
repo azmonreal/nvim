@@ -230,7 +230,7 @@ return {
 				python = { "mypy", }
 			}
 
-			vim.list_extend(lint.linters.mypy.args, { "--strict", })
+			vim.list_extend(lint.linters.mypy.args, { "--strict", "--enable-incomplete-feature=NewGenericSyntax" })
 
 			vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 				callback = function ()
