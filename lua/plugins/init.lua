@@ -395,13 +395,13 @@ return {
 		init = function ()
 			Utils.setKeymaps({
 				["<leader>x"] = {
-					{ "x", "<cmd>Trouble diagnostics toggle<cr>",                        desc = "Diagnostics (Trouble)", },
-					{ "X", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",           desc = "Buffer Diagnostics (Trouble)", },
-					{ "s", "<cmd>Trouble symbols toggle focus=false<cr>",                desc = "Symbols (Trouble)", },
-					{ "l", "<cmd>Trouble lsp toggle focus=false win.position=right<cr>", desc = "LSP Definitions / references / ... (Trouble)", },
-					{ "L", "<cmd>Trouble loclist toggle<cr>",                            desc = "Location List (Trouble)", },
-					{ "Q", "<cmd>Trouble qflist toggle<cr>",                             desc = "Quickfix List (Trouble)", },
-					{ "t", "<cmd>Trouble todo<cr>",                                      desc = "Quickfix List (Trouble)", },
+					{ "x", "<cmd>Trouble diagnostics toggle<cr>",                        { desc = "Diagnostics (Trouble)", } },
+					{ "X", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",           { desc = "Buffer Diagnostics (Trouble)", } },
+					{ "s", "<cmd>Trouble symbols toggle focus=false<cr>",                { desc = "Symbols (Trouble)", } },
+					{ "l", "<cmd>Trouble lsp toggle focus=false win.position=right<cr>", { desc = "LSP Definitions / references / ... (Trouble)", } },
+					{ "L", "<cmd>Trouble loclist toggle<cr>",                            { desc = "Location List (Trouble)", } },
+					{ "Q", "<cmd>Trouble qflist toggle<cr>",                             { desc = "Quickfix List (Trouble)", } },
+					{ "t", "<cmd>Trouble todo<cr>",                                      { desc = "Quickfix List (Trouble)", } },
 				}
 			})
 		end
