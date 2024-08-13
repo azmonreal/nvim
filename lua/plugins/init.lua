@@ -94,8 +94,6 @@ return {
 		end
 	},
 
-	"sindrets/diffview.nvim",
-
 	{
 		"lervag/vimtex",
 		config = function ()
