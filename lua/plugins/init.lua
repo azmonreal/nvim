@@ -217,7 +217,19 @@ return {
 			conform.setup(opts)
 
 			vim.keymap.set({ "n", "v" }, "<leader>bf",
-				function () conform.format({ async = true, lsp_format = "fallback" }) end,
+				function ()
+					conform.format({ async = true, lsp_format = "fallback" }, function (err, did_edit)
+						if err then
+							vim.notify("Formatting error: " .. err, vim.log.levels.ERROR)
+						else
+							if did_edit then
+								vim.notify("Formatted with Conform", vim.log.levels.INFO)
+							else
+								vim.notify("No formatting done", vim.log.levels.INFO)
+							end
+						end
+					end)
+				end,
 				{ desc = "Run formatting, using LSP as fallback" })
 		end
 	},
