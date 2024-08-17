@@ -37,6 +37,9 @@ vim.filetype.add({
 	extension = {
 		xaml = "xml"
 	},
+	filename = {
+		["docker-compose.yml"] = "yaml.docker-compose"
+	},
 })
 
 vim.api.nvim_create_autocmd("FileType", {
