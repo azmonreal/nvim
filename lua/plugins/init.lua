@@ -96,8 +96,16 @@ return {
 
 	{
 		"lervag/vimtex",
-		config = function ()
+		init = function ()
 			vim.g.vimtex_view_method = "zathura"
+
+			local augroup = vim.api.nvim_create_augroup("vimtex_config", { clear = true })
+			vim.api.nvim_create_autocmd("User", {
+				pattern = "VimtexEventQuit",
+				group = augroup,
+				desc = "Clean files on exit.",
+				command = [[ call vimtex#compiler#clean(0) ]],
+			})
 		end
 	},
 
