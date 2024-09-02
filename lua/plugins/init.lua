@@ -335,7 +335,6 @@ return {
 	},
 	{
 		"Vigemus/iron.nvim",
-		tag = "v3.0",
 		main = "iron.core",
 		opts = function ()
 			return {
