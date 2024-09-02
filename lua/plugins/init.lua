@@ -248,7 +248,15 @@ return {
 				python = { "mypy", }
 			}
 
-			vim.list_extend(lint.linters.mypy.args, { "--strict", "--enable-incomplete-feature=NewGenericSyntax" })
+			vim.list_extend(lint.linters.mypy.args,
+				{ "--strict", "--enable-incomplete-feature=NewGenericSyntax", function ()
+					local cpath = vim.fn.expand("%:p:h")
+					-- TODO: use better way to determine when inside onedrive
+					if cpath:match("Semesters") then
+						 -- TODO: use a local dir instead of having no cache
+						return "--cache-dir=/dev/null"
+					end
+				end })
 
 			vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 				callback = function ()
