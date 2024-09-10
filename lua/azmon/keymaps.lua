@@ -2,6 +2,8 @@ Utils.setKeymaps({
 	{
 		{ "]b", "<cmd>bn<CR>", { desc = "Switch to next buffer" } },
 		{ "[b", "<cmd>bp<CR>", { desc = "Switch to previous buffer" } },
+		{ "]q", "<cmd>cn<CR>", { desc = "Select next quickfix item" } },
+		{ "[q", "<cmd>cp<CR>", { desc = "Select previous quickfix item" } },
 	},
 
 	["Z"] = {
