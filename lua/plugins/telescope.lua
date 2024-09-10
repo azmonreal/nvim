@@ -15,6 +15,16 @@ local mappings = {
 	}
 }
 
+local open_with_trouble = function (prompt_bufnr)
+	local ok, trouble = pcall(require, "trouble")
+	if not ok then
+		print("trouble.nvim is not installed")
+		return
+	end
+
+	require("trouble.sources.telescope").open(prompt_bufnr)
+end
+
 return {
 	"nvim-telescope/telescope.nvim",
 
@@ -41,12 +51,14 @@ return {
 
 				["<C-j>"] = actions.move_selection_next,
 				["<C-k>"] = actions.move_selection_previous,
+				["<c-t>"] = open_with_trouble,
 			},
 			n = {
 				["<esc>"] = actions.close,
 				["j"] = actions.move_selection_next,
 				["k"] = actions.move_selection_previous,
 				["q"] = actions.close,
+				["<c-t>"] = open_with_trouble,
 			},
 		}
 
