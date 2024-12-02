@@ -10,10 +10,10 @@ local mappings = {
 		{ "gr",         vim.lsp.buf.references,                                                                { desc = "Find references to symbol" } },
 		{ "<leader>ca", vim.lsp.buf.code_action,                                                               { desc = "Show available code actions" } },
 		{ "gl",         vim.diagnostic.open_float,                                                             { desc = "Open diagnositcs floating window" } },
-		{ "[d",         vim.diagnostic.goto_prev,                                                              { desc = "Go to previous diagnostic" } },
-		{ "]d",         vim.diagnostic.goto_next,                                                              { desc = "Go to next diagnostic" } },
+		{ "[d",         function () vim.diagnostic.jump({ count = -1 }) end,                                   { desc = "Go to previous diagnostic" } },
+		{ "]d",         function () vim.diagnostic.jump({ count = 1 }) end,                                    { desc = "Go to next diagnostic" } },
 		{ "<leader>q",  vim.diagnostic.setloclist,                                                             { desc = "Lsp set loclist" } },
-		{ "<leader>sh", function () vim.lsp.inlay_hint.enable(nil, not vim.lsp.inlay_hint.is_enabled(nil)) end },
+		{ "<leader>sh", function () vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end,{ desc = "Toggle inlay hints", }, },
 	}
 }
 
