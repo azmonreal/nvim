@@ -4,6 +4,7 @@ local modules = {
 	"options",
 	"lazy",
 	"keymaps",
+	"commands",
 }
 
 for _, v in pairs(modules) do
