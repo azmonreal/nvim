@@ -35,7 +35,8 @@ vim.o.pumheight = 10
 
 vim.filetype.add({
 	extension = {
-		xaml = "xml"
+		xaml = "xml",
+		cc = "cpp",
 	},
 	filename = {
 		["docker-compose.yml"] = "yaml.docker-compose"
