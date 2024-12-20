@@ -27,34 +27,34 @@ return {
 							vim.schedule(function () gs.prev_hunk() end)
 							return "<Ignore>"
 						end, { expr = true } },
-						{ "<leader>gB", function () gs.blame_line { full = true } end, { desc = "Open telescope picker list" } },
-					}
+						{ "<leader>gB", function () gs.blame_line { full = true } end, { desc = "Git blame" } },
+					},
 				})
-			end
-		}
+			end,
+		},
 	},
 	{
-		"kdheepak/lazygit.nvim",
-		config = function ()
-			vim.keymap.set({ "n" }, "<leader>gt", function () vim.cmd([[LazyGit]]) end, { desc = "" })
-		end
-	},
-	{
-		"tpope/vim-fugitive",
-
-		config = function ()
+		"NeogitOrg/neogit",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"sindrets/diffview.nvim",
+			"nvim-telescope/telescope.nvim",
+		},
+		init = function ()
 			Utils.setKeymaps({
 				["<leader>g"] = {
-					{ "g", "<cmd>Git<CR>",        { desc = "Git" } },
-					{ "s", "<cmd>Git status<CR>", { desc = "Git status" } },
-					{ "d", "<cmd>Git diff<CR>",   { desc = "Git diff" } },
-					{ "l", "<cmd>Git log<CR>",    { desc = "Git log" } },
-					{ "a", "<cmd>Git add<CR>",    { desc = "Git add" } },
-					{ "b", "<cmd>Git branch<CR>", { desc = "Git branch" } },
-					-- { "B", "<cmd>Git blame<CR>", { desc = "Open telescope picker list" } },
-				}
+					{ "g", "<cmd>Neogit<CR>",        { desc = "Git" } },
+					{ "d", "<cmd>Neogit diff<CR>",   { desc = "Git diff" } },
+					{ "l", "<cmd>Neogit log<CR>",    { desc = "Git log" } },
+					{ "b", "<cmd>Neogit branch<CR>", { desc = "Git branch" } },
+				},
 			})
-		end
+		end,
+		---@module "neogit"
+		---@type NeogitConfig
+		opts = {
+			graph_style = "kitty",
+		},
 	},
 	{
 		"sindrets/diffview.nvim",
