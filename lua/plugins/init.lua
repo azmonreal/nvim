@@ -163,10 +163,10 @@ return {
 					{ "<leader>a", function () harpoon:list():add() end },
 					{ "<C-e>",     function () harpoon.ui:toggle_quick_menu(harpoon:list()) end },
 
-					{ "<M-h>",     function () harpoon:list():select(1) end },
-					{ "<M-j>",     function () harpoon:list():select(2) end },
-					{ "<M-k>",     function () harpoon:list():select(3) end },
-					{ "<M-l>",     function () harpoon:list():select(4) end },
+					{ "<leader>1",     function () harpoon:list():select(1) end },
+					{ "<leader>2",     function () harpoon:list():select(2) end },
+					{ "<leader>3",     function () harpoon:list():select(3) end },
+					{ "<leader>4",     function () harpoon:list():select(4) end },
 
 					-- Toggle previous & next buffers> stored within Harpoon list
 					{ "<leader>P", function () harpoon:list():prev({ --[[ui_nav_wrap = true ]] }) end },
