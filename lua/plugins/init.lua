@@ -144,6 +144,7 @@ return {
 	},
 	--"Civitasv/cmake-tools.nvim",
 
+	"andymass/vim-matchup",
 	{
 		"mrcjkb/rustaceanvim",
 		version = "^5",

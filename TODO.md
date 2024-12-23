@@ -14,8 +14,6 @@
 # Plugins
 - related keymaps set in config function
 - treesitter integration
-    - solve 'matchit' incompatibility
-        * at least for the rust parser, parentheses and braces are not escaped inside strings
     - text object motions
 - snippets and completion
     - get snippets
