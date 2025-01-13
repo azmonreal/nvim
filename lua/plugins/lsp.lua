@@ -40,7 +40,7 @@ return {
 		},
 		opts = {
 			ensure_installed = {
-				"lua_ls", "clangd", "texlab", "rust_analyzer", "basedpyright"
+				"lua_ls", "clangd", "texlab", "basedpyright", "ruff", "ts_ls"
 			},
 			automatic_installation = true,
 			handlers = {
@@ -48,8 +48,8 @@ return {
 					require("lspconfig")[server_name].setup({ capabilities = capabilities, })
 				end,
 
-				["tsserver"] = function ()
-					require("lspconfig").tsserver.setup({
+				["ts_ls"] = function ()
+					require("lspconfig").ts_ls.setup({
 						capabilities = capabilities,
 						init_options = {
 							hostInfo = "neovim",
@@ -116,8 +116,6 @@ return {
 						end
 					})
 				end,
-				["rust_analyzer"] = function ()
-				end
 			}
 		}
 	},
