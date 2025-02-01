@@ -9,15 +9,9 @@ return {
 				["core.dirman"] = {
 					config = {
 						-- Format: <name_of_workspace> = <path_to_workspace_root>
-					}
+					},
 				},
-				["core.completion"] = {
-					config = {
-						engine = "nvim-cmp",
-					}
-				},
-				["core.integrations.nvim-cmp"] = {}
-			}
-		}
-	}
+			},
+		},
+	},
 }
