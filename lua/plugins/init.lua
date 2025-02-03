@@ -227,7 +227,11 @@ return {
 				function ()
 					conform.format({ async = true, lsp_format = "fallback" }, function (err, did_edit)
 						if err then
-							vim.notify("Formatting error: " .. err, vim.log.levels.ERROR)
+							if err == "No result returned from LSP formatter" then
+								vim.notify(err, vim.log.levels.INFO)
+							else
+								vim.notify("Formatting error: " .. err, vim.log.levels.ERROR)
+							end
 						else
 							if did_edit then
 								vim.notify("Formatted with Conform", vim.log.levels.INFO)
