@@ -1,9 +1,7 @@
 Utils.setKeymaps({
 	{
-		{ "]b",    "<cmd>bn<CR>",      { desc = "Switch to next buffer" } },
-		{ "[b",    "<cmd>bp<CR>",      { desc = "Switch to previous buffer" } },
-		{ "]q",    "<cmd>cn<CR>",      { desc = "Select next quickfix item" } },
-		{ "[q",    "<cmd>cp<CR>",      { desc = "Select previous quickfix item" } },
+		{ "]T",    "<cmd>tabnext<CR>", { desc = "Switch to next tab" } },
+		{ "[T",    "<cmd>tabprev<CR>", { desc = "Switch to previous tab" } },
 
 		{ "<M-J>", "<cmd>m +1<CR>==",  { desc = "Move line one below" } },
 		{ "<M-K>", "<cmd>m -2<CR>==",  { desc = "Move line one above" } },
