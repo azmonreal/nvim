@@ -310,27 +310,6 @@ return {
 		opts = {}
 	},
 	{
-		"stevearc/aerial.nvim",
-		opts = {
-			layout = {
-				min_width = 0.2,
-				default_direction = "right",
-			}
-		},
-
-		config = function (_, opts)
-			require("aerial").setup(opts)
-
-			vim.keymap.set("n", "<leader>n", function () vim.cmd [[AerialToggle]] end)
-		end,
-
-		-- Optional dependencies
-		dependencies = {
-			"nvim-treesitter/nvim-treesitter",
-			"nvim-tree/nvim-web-devicons"
-		},
-	},
-	{
 		"folke/which-key.nvim",
 		event = "VeryLazy",
 		opts = {
@@ -443,16 +422,16 @@ return {
 					end, { desc = "Select previous trouble item" } },
 				},
 				["<leader>x"] = {
-					{ "x", "<cmd>Trouble diagnostics toggle<cr>",                        { desc = "Diagnostics (Trouble)", } },
-					{ "X", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",           { desc = "Buffer Diagnostics (Trouble)", } },
-					{ "s", "<cmd>Trouble symbols toggle focus=false<cr>",                { desc = "Symbols (Trouble)", } },
-					{ "l", "<cmd>Trouble lsp toggle focus=false win.position=right<cr>", { desc = "LSP Definitions / references / ... (Trouble)", } },
-					{ "L", "<cmd>Trouble loclist toggle<cr>",                            { desc = "Location List (Trouble)", } },
-					{ "Q", "<cmd>Trouble qflist toggle<cr>",                             { desc = "Quickfix List (Trouble)", } },
-					{ "t", "<cmd>Trouble todo<cr>",                                      { desc = "Quickfix List (Trouble)", } },
-				}
+					{ "x", "<cmd>Trouble diagnostics toggle<cr>",                        { desc = "Diagnostics (Trouble)" } },
+					{ "X", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",           { desc = "Buffer Diagnostics (Trouble)" } },
+					{ "s", "<cmd>Trouble symbols toggle focus=false win={size=0.2}<cr>", { desc = "Symbols (Trouble)" } },
+					{ "l", "<cmd>Trouble lsp toggle focus=false win.position=right<cr>", { desc = "LSP Definitions / references / ... (Trouble)" } },
+					{ "L", "<cmd>Trouble loclist toggle<cr>",                            { desc = "Location List (Trouble)" } },
+					{ "Q", "<cmd>Trouble qflist toggle<cr>",                             { desc = "Quickfix List (Trouble)" } },
+					{ "t", "<cmd>Trouble todo<cr>",                                      { desc = "Quickfix List (Trouble)" } },
+				},
 			})
-		end
+		end,
 	},
 
 	{
