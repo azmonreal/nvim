@@ -421,7 +421,27 @@ return {
 		opts = {}, -- for default options, refer to the configuration section for custom setup.
 		cmd = "Trouble",
 		init = function ()
+			local trouble = require("trouble")
 			Utils.setKeymaps({
+				{
+					-- FIX: view doesnt update properly when jumping from another window (it may be already fixed?)
+					{ "]x", function ()
+						if trouble.is_open() then
+							trouble.next()
+							trouble.jump()
+						else
+							vim.notify("No trouble view open", vim.log.levels.INFO)
+						end
+					end, { desc = "Select next trouble item" } },
+					{ "[x", function ()
+						if trouble.is_open() then
+							trouble.prev()
+							trouble.jump()
+						else
+							vim.notify("No trouble view open", vim.log.levels.INFO)
+						end
+					end, { desc = "Select previous trouble item" } },
+				},
 				["<leader>x"] = {
 					{ "x", "<cmd>Trouble diagnostics toggle<cr>",                        { desc = "Diagnostics (Trouble)", } },
 					{ "X", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",           { desc = "Buffer Diagnostics (Trouble)", } },
