@@ -13,6 +13,10 @@ vim.o.winbar = "%f"
 vim.o.cursorline = true
 vim.o.cursorlineopt = "number"
 
+vim.o.scrolloff = 5
+
+vim.o.colorcolumn = "80,120"
+
 vim.o.breakindent = true
 vim.opt.breakindentopt = { "list:-1" }
 
