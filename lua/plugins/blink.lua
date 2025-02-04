@@ -18,10 +18,10 @@ return {
 	opts = {
 		completion = {
 			list = {
-				selection = { preselect = true, auto_insert = false },
+				selection = { preselect = false, auto_insert = false },
 			},
 			menu = {
-				-- auto_show = false,
+				auto_show = false,
 				draw = {
 					columns = { { "kind_icon", gap = 1 }, { "label", "label_description", gap = 1 }, { "kind" } },
 					components = {
@@ -77,6 +77,7 @@ return {
 		sources = {
 			default = { "lazydev", "lsp", "path", "snippets", "buffer", "dadbod" },
 			providers = {
+				buffer = { min_keyword_length = 3 },
 				lazydev = {
 					name = "LazyDev",
 					module = "lazydev.integrations.blink", -- make lazydev completions top priority (see `:h blink.cmp`)
