@@ -27,7 +27,7 @@ return {
 	{
 		"nvim-treesitter/nvim-treesitter",
 		main = "nvim-treesitter.configs",
-		build = "TSUpdate",
+		build = ":TSUpdate",
 		opts = {
 			highlight = {
 				enable = true,
