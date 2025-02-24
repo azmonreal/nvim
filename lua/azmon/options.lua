@@ -43,10 +43,10 @@ vim.filetype.add({
 		cc = "cpp",
 	},
 	pattern = {
-		["docker-compose*.yml"] = "yaml.docker-compose",
+		["docker-compose.*yml"] = "yaml.docker-compose",
 		-- HACK: lua doesn't support POSIX regex, and lua patterns can't apply modifiers, like optional(?), to capture
 		-- groups, so it has to be checked in  a function
-		["compose..*.yml"] = function (path, bufnr, ext)
+		["compose.*yml"] = function (path, bufnr, ext)
 			-- if regex "compose(\..*)?.yml" matches
 			if vim.fn.match(path, "compose\\(\\..*\\)\\?.yml$") > -1 then
 				return "yaml.docker-compose"
