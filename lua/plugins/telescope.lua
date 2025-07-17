@@ -62,6 +62,17 @@ return {
 			},
 		}
 
+		opts.pickers.buffers = {
+			mappings = {
+				i = {
+					["<c-d>"] = actions.delete_buffer,
+				},
+				n = {
+					["<c-d>"] = actions.delete_buffer,
+				},
+			},
+		}
+
 		telescope.setup(opts)
 
 		local telescope_extensions = {
