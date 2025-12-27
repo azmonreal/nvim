@@ -501,4 +501,9 @@ return {
 		"stevearc/dressing.nvim",
 		opts = {},
 	},
+	{
+		"folke/ts-comments.nvim",
+		opts = {},
+		event = "VeryLazy",
+	},
 }
