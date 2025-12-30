@@ -52,7 +52,11 @@ return {
 
 	{
 		"zbirenbaum/copilot.lua",
-		config = true,
+		opts = {
+			filetypes = {
+				yaml = true,
+			},
+		},
 	},
 
 	{
