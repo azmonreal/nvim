@@ -114,24 +114,9 @@ return {
 	},
 
 	{
-		"ahmedkhalf/project.nvim",
-		main = "project_nvim",
-		opts = {
-			manual_mode = false,
-			detection_methods = { "lsp", "pattern", },
-			patterns = { ".git", "Makefile", "package.json", "CMakeLists.txt" },
-			ignore_lsp = { "lua_ls" },
-			exclude_dirs = {},
-			show_hidden = false,
-			silent_chdir = true,
-			scope_chdir = "global", -- "global" | "tab" | "win"
-			datapath = vim.fn.stdpath("data"),
-		},
-		config = function (_, opt)
-			require("project_nvim").setup(opt)
-
-			vim.keymap.set({ "n" }, "<leader>cd", require("project_nvim.project").on_buf_enter, { desc = "" })
-		end
+		-- TODO: check behavior is as expected from previous version
+		"DrKJeff16/project.nvim",
+		opts = {},
 	},
 
 	"nvim-lua/plenary.nvim",
