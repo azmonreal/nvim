@@ -343,20 +343,37 @@ return {
 						sh = {
 							-- Can be a table or a function that
 							-- returns a table (see below)
-							command = { "zsh" }
+							command = { "zsh" },
 						},
 						python = {
 							command = { "ipython", "--no-autoindent" },
-							format = require("iron.fts.common").bracketed_paste_python
-						}
+							format = require("iron.fts.common").bracketed_paste_python,
+							block_dividers = { "# %%", "#%%" },
+							env = { PYTHON_BASIC_REPL = "1" }, --this is needed for python3.13 and up.
+						},
 					},
+					-- set the file type of the newly created repl to ft
+					-- bufnr is the buffer id of the REPL and ft is the filetype of the
+					-- language being used for the REPL.
+					repl_filetype = function (bufnr, ft)
+						return ft
+						-- or return a string name such as the following
+						-- return "iron"
+					end,
 					-- How the repl window will be displayed
 					-- See below for more information
-					repl_open_cmd = require("iron.view").split.vertical.botright(0.4)
+					-- repl_open_cmd = require("iron.view").split.vertical.botright(0.4),
+					repl_open_cmd = require("iron.view").right(0.4),
 				},
 				-- Iron doesn't set keymaps by default anymore.
 				-- You can set them here or manually add keymaps to the functions in iron.core
 				keymaps = {
+					toggle_repl = "<space>rt", -- toggles the repl open and closed.
+					-- If repl_open_command is a table as above, then the following keymaps are
+					-- available
+					-- toggle_repl_with_cmd_1 = "<space>rv",
+					-- toggle_repl_with_cmd_2 = "<space>rh",
+					restart_repl = "<space>rr", -- calls `IronRestart` to restart the repl
 					send_motion = "<space>sc",
 					visual_send = "<space>sc",
 					send_file = "<space>sf",
@@ -364,6 +381,8 @@ return {
 					send_paragraph = "<space>sp",
 					send_until_cursor = "<space>su",
 					send_mark = "<space>sm",
+					send_code_block = "<space>sb",
+					send_code_block_and_move = "<space>sn",
 					mark_motion = "<space>mc",
 					mark_visual = "<space>mc",
 					remove_mark = "<space>md",
@@ -375,7 +394,7 @@ return {
 				-- If the highlight is on, you can change how it looks
 				-- For the available options, check nvim_set_hl
 				highlight = {
-					italic = true
+					italic = true,
 				},
 				ignore_blank_lines = true, -- ignore blank lines when sending visual select lines
 
@@ -384,13 +403,11 @@ return {
 		init = function ()
 			Utils.setKeymaps({
 				["<leader>r"] = {
-					{ "s", "<cmd>IronRepl<cr>",    { desc = "Toggle Iron REPL" } },
-					{ "r", "<cmd>IronRestart<cr>", { desc = "Restart Iron REPL" } },
-					{ "f", "<cmd>IronFocus<cr>",   { desc = "Focus Iron REPL" } },
-					{ "h", "<cmd>IronHide<cr>",    { desc = "Hide Iron REPL" } },
-				}
+					{ "f", "<cmd>IronFocus<cr>", { desc = "Focus Iron REPL" } },
+					{ "h", "<cmd>IronHide<cr>",  { desc = "Hide Iron REPL" } },
+				},
 			})
-		end
+		end,
 	},
 	{
 		"folke/trouble.nvim",
