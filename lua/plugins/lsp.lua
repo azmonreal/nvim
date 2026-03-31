@@ -19,7 +19,7 @@ vim.api.nvim_create_autocmd("LspAttach",
 		group = vim.api.nvim_create_augroup("UserLspConfig", {}),
 		callback = function (ev)
 			Utils.setKeymaps(mappings)
-		end
+		end,
 	}
 )
 
@@ -31,18 +31,18 @@ return {
 		dependencies = {
 			{
 				"williamboman/mason.nvim",
-				config = true
+				config = true,
 			},
 			"neovim/nvim-lspconfig",
 		},
 		opts = {
 			ensure_installed = {
-				"lua_ls", "clangd", "texlab", "basedpyright", "ruff", "ts_ls"
+				"lua_ls", "clangd", "texlab", "basedpyright", "ruff", "ts_ls",
 			},
 			automatic_installation = true,
 			handlers = {
 				function (server_name)
-					require("lspconfig")[server_name].setup({ capabilities = capabilities, })
+					require("lspconfig")[server_name].setup({ capabilities = capabilities })
 				end,
 
 				["ts_ls"] = function ()
@@ -52,8 +52,8 @@ return {
 							hostInfo = "neovim",
 							preferences = {
 								importModuleSpecifierPreference = "non-relative",
-							}
-						}
+							},
+						},
 					})
 				end,
 				["basedpyright"] = function ()
@@ -63,8 +63,8 @@ return {
 							basedpyright = {
 								reportUnkownVariable = false,
 								typeCheckingMode = "standard",
-							}
-						}
+							},
+						},
 					})
 				end,
 
@@ -78,7 +78,7 @@ return {
 								-- },
 								diagnostics = {
 									neededFileStatus = {
-										["codestyle-check"] = "Any"
+										["codestyle-check"] = "Any",
 									},
 								},
 							},
@@ -110,10 +110,10 @@ return {
 							end
 
 							vim.keymap.set("n", "<leader>gs", client_request, {})
-						end
+						end,
 					})
 				end,
-			}
-		}
+			},
+		},
 	},
 }
