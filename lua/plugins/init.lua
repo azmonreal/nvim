@@ -28,26 +28,21 @@ return {
 		"nvim-treesitter/nvim-treesitter",
 		main = "nvim-treesitter.configs",
 		build = ":TSUpdate",
-		opts = {
-			highlight = {
-				enable = true,
-				-- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-				-- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-				-- Using this option may slow down your editor, and you may see some duplicate highlights.
-				-- Instead of true it can also be a list of languages
-				additional_vim_regex_highlighting = false,
-				disable = { "latex" },
-			},
-			incremental_selection = {
-				enable = true,
-				keymaps = {
-					init_selection = "gnn", -- set to `false` to disable one of the mappings
-					node_incremental = "grn",
-					scope_incremental = "grc",
-					node_decremental = "grm",
-				},
-			},
-		}
+		config = function ()
+			vim.api.nvim_create_autocmd("FileType", {
+				group = vim.api.nvim_create_augroup("treesitter", { clear = true }),
+				callback = function (ev)
+					local ok = pcall(vim.treesitter.start, ev.buf)
+
+					if ok then
+						vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
+						vim.wo[0][0].foldmethod = "expr"
+
+						vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+					end
+				end,
+			})
+		end,
 	},
 
 	{
