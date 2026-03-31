@@ -100,3 +100,5 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.keymap.set("n", "q", vim.cmd.close, { desc = "Close the current buffer", buffer = true })
 	end,
 })
+
+require("vim._core.ui2").enable({})
