@@ -5,8 +5,8 @@ Utils.setKeymaps({
 
 		{ "<M-J>", "<cmd>m +1<CR>==",  { desc = "Move line one below" } },
 		{ "<M-K>", "<cmd>m -2<CR>==",  { desc = "Move line one above" } },
-		{ "<M-J>", ":m '>+<CR>gv=gv",  { desc = "Move selection one below" },       mode = "v" },
-		{ "<M-K>", ":m '<-2<CR>gv=gv", { desc = "Move selection one above" },       mode = "v" },
+		{ "<M-J>", ":m '>+<CR>gv=gv",  { desc = "Move selection one below" }, mode = "v" },
+		{ "<M-K>", ":m '<-2<CR>gv=gv", { desc = "Move selection one above" }, mode = "v" },
 	},
 
 	["Z"] = {

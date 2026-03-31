@@ -10,7 +10,7 @@ return {
 
 	{
 		"rose-pine/neovim",
-		name = "rose-pine"
+		name = "rose-pine",
 	},
 
 	"Shatur/neovim-ayu",

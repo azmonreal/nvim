@@ -86,13 +86,13 @@ return {
 					{ mode = { "i" },      "<C-K>", function () ls.expand() end },
 					{ mode = { "i", "s" }, "<C-L>", function () ls.jump(1) end },
 					{ mode = { "i", "s" }, "<C-J>", function () ls.jump(-1) end },
-					{ mode = { "i", "s" }, "<C-E>", function () if ls.choice_active() then ls.change_choice(1) end end }
-				}
+					{ mode = { "i", "s" }, "<C-E>", function () if ls.choice_active() then ls.change_choice(1) end end },
+				},
 			}, { silent = true })
 
 			ls.config.setup({
 				store_selection_keys = "<C-K>",
-				enable_autosnippets = true
+				enable_autosnippets = true,
 			})
 
 
@@ -107,11 +107,11 @@ return {
 						else -- If LS_SELECT_RAW is empty, return a blank insert node
 							return sn(nil, i(1))
 						end
-					end
+					end,
 			}
 
 			require("luasnip.loaders.from_lua").load({ paths = "./lua/snippets/" })
-		end
+		end,
 	},
 
 	{
@@ -126,7 +126,7 @@ return {
 				desc = "Clean files on exit.",
 				command = [[ call vimtex#compiler#clean(0) ]],
 			})
-		end
+		end,
 	},
 
 	{
@@ -140,7 +140,7 @@ return {
 
 	{
 		"monkoose/nvlime",
-		dependencies = { "monkoose/parsley" }
+		dependencies = { "monkoose/parsley" },
 	},
 
 	{
@@ -169,29 +169,29 @@ return {
 					{ "<leader>a", function () harpoon:list():add() end },
 					{ "<C-e>",     function () harpoon.ui:toggle_quick_menu(harpoon:list()) end },
 
-					{ "<leader>1",     function () harpoon:list():select(1) end },
-					{ "<leader>2",     function () harpoon:list():select(2) end },
-					{ "<leader>3",     function () harpoon:list():select(3) end },
-					{ "<leader>4",     function () harpoon:list():select(4) end },
+					{ "<leader>1", function () harpoon:list():select(1) end },
+					{ "<leader>2", function () harpoon:list():select(2) end },
+					{ "<leader>3", function () harpoon:list():select(3) end },
+					{ "<leader>4", function () harpoon:list():select(4) end },
 
 					-- Toggle previous & next buffers> stored within Harpoon list
 					{ "<leader>P", function () harpoon:list():prev({ --[[ui_nav_wrap = true ]] }) end },
 					{ "<leader>N", function () harpoon:list():next({ --[[ui_nav_wrap = true]] }) end },
-				}
+				},
 			})
-		end
+		end,
 	},
 
 	{
 		"j-hui/fidget.nvim",
-		opts = {}
+		opts = {},
 	},
 	{
 		"stevearc/oil.nvim",
 		opts = {
 			keymaps = {
-				["q"] = "actions.close"
-			}
+				["q"] = "actions.close",
+			},
 		},
 
 		config = function (_, opts)
@@ -247,7 +247,7 @@ return {
 					end)
 				end,
 				{ desc = "Run formatting, using LSP as fallback" })
-		end
+		end,
 	},
 	{
 		"mfussenegger/nvim-lint",
@@ -255,7 +255,7 @@ return {
 			local lint = require("lint")
 
 			lint.linters_by_ft = {
-				python = { "mypy", }
+				python = { "mypy" },
 			}
 
 			vim.list_extend(lint.linters.mypy.args,
@@ -263,7 +263,7 @@ return {
 					local cpath = vim.fn.expand("%:p:h")
 					-- TODO: use better way to determine when inside onedrive
 					if cpath:match("Semesters") then
-						 -- TODO: use a local dir instead of having no cache
+						-- TODO: use a local dir instead of having no cache
 						return "--cache-dir=/dev/null"
 					end
 				end })
@@ -279,7 +279,7 @@ return {
 					-- require("lint").try_lint("cspell")
 				end,
 			})
-		end
+		end,
 	},
 	{
 		"windwp/nvim-ts-autotag",
@@ -288,17 +288,17 @@ return {
 				-- Defaults
 				enable_close = true, -- Auto close tags
 				enable_rename = true, -- Auto rename pairs of tags
-				enable_close_on_slash = false -- Auto close on trailing </
+				enable_close_on_slash = false, -- Auto close on trailing </
 			},
 			-- Also override individual filetype configs, these take priority.
 			-- Empty by default, useful if one of the "opts" global settings
 			-- doesn't work well in a specific filetype
 			per_filetype = {
 				["html"] = {
-					enable_close = false
-				}
-			}
-		}
+					enable_close = false,
+				},
+			},
+		},
 	},
 	{
 		"brenoprata10/nvim-highlight-colors",
@@ -307,12 +307,12 @@ return {
 			render = "background", -- or 'foreground' or 'first_column'
 			enable_named_colors = true,
 			enable_tailwind = true,
-		}
+		},
 	},
 	{
 		"lukas-reineke/indent-blankline.nvim",
 		main = "ibl",
-		opts = {}
+		opts = {},
 	},
 	{
 		"folke/which-key.nvim",

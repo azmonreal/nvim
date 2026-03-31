@@ -5,11 +5,11 @@ return {
 			"mfussenegger/nvim-dap-python",
 			config = function ()
 				require("dap-python").setup("python")
-			end
+			end,
 		},
 		{
 			"rcarriga/nvim-dap-ui",
-			opts = {}
+			opts = {},
 		},
 		"nvim-neotest/nvim-nio",
 	},
@@ -20,7 +20,7 @@ return {
 		dap.adapters.lldb = {
 			type = "executable",
 			command = "/usr/bin/lldb-vscode", -- adjust as needed, must be absolute path
-			name = "lldb"
+			name = "lldb",
 		}
 
 		dap.configurations.cpp = {
