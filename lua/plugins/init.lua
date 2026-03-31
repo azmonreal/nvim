@@ -471,22 +471,6 @@ return {
 		end,
 	},
 	{
-		"folke/snacks.nvim",
-		init = function ()
-			Utils.setKeymaps({
-				{
-					{ "<M-n>", function () Snacks.words.jump(1, true) end },
-					{ "<M-p>", function () Snacks.words.jump(-1, true) end },
-				},
-			})
-		end,
-		---@module "snacks"
-		---@type snacks.Config
-		opts = {
-			words = { enabled = true },
-		},
-	},
-	{
 		"stevearc/dressing.nvim",
 		opts = {},
 	},

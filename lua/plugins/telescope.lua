@@ -1,5 +1,5 @@
 local mappings = {
-	["<leader>f"] = {
+	["<leader>t"] = {
 		{ "<leader>", function () require("telescope.builtin").builtin() end,                   { desc = "Open telescope picker list" } },
 		{ "g",        function () require("telescope.builtin").live_grep() end,                 { desc = "Open telescope live grep" } },
 		{ "/",        function () require("telescope.builtin").current_buffer_fuzzy_find() end, { desc = "Open telescope current buffer fuzzy find" } },
