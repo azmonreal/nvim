@@ -14,6 +14,8 @@ return {
 	{
 		"folke/lazydev.nvim",
 		ft = "lua", -- only load on lua files
+		---@module "lazydev"
+		---@type lazydev.Config
 		opts = {
 			library = {
 				-- See the configuration section for more details
@@ -78,7 +80,7 @@ return {
 	{
 		"L3MON4D3/LuaSnip",
 		build = "make install_jsregexp",
-		config = function ()
+		init = function ()
 			local ls = require("luasnip")
 
 			Utils.setKeymaps({
@@ -191,7 +193,7 @@ return {
 		"ThePrimeagen/harpoon",
 		branch = "harpoon2",
 		dependencies = { "nvim-lua/plenary.nvim" },
-		config = true,
+		opts = {},
 		init = function ()
 			local harpoon = require("harpoon")
 
@@ -219,15 +221,17 @@ return {
 	},
 	{
 		"stevearc/oil.nvim",
+		-- Optional dependencies
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		---@module "oil"
+		---@type oil.SetupOpts
 		opts = {
 			keymaps = {
 				["q"] = "actions.close",
 			},
 		},
 
-		config = function (_, opts)
-			require("oil").setup(opts)
-
+		init = function ()
 			vim.keymap.set("n", "-", "<cmd>Oil<CR>", { desc = "Open file explorer" })
 			vim.keymap.set("n", "<leader>-", "<cmd>Oil --float<CR>", { desc = "Open file explorer in float" })
 		end,
@@ -238,6 +242,8 @@ return {
 	},
 	{
 		"stevearc/conform.nvim",
+		---@module "conform"
+		---@type conform.setupOpts
 		opts = {
 			format_on_save = nil,
 			quiet = true,
@@ -254,10 +260,8 @@ return {
 				yaml = { "prettier" },
 			},
 		},
-		config = function (_, opts)
+		init = function ()
 			local conform = require("conform")
-
-			conform.setup(opts)
 
 			vim.keymap.set({ "n", "v" }, "<leader>bf",
 				function ()
@@ -314,6 +318,8 @@ return {
 	},
 	{
 		"windwp/nvim-ts-autotag",
+		---@module "nvim-ts-autotag"
+		---@type nvim-ts-autotag.PluginSetup
 		opts = {
 			opts = {
 				-- Defaults
@@ -343,11 +349,15 @@ return {
 	{
 		"lukas-reineke/indent-blankline.nvim",
 		main = "ibl",
+		---@module "ibl"
+		---@type ibl.config
 		opts = {},
 	},
 	{
 		"folke/which-key.nvim",
 		event = "VeryLazy",
+		---@module "which-key"
+		---@type wk.Opts
 		opts = {
 			delay = 500,
 		},
@@ -450,6 +460,8 @@ return {
 				opts = true,
 			},
 		},
+		---@module "trouble"
+		---@type trouble.Config
 		opts = {}, -- for default options, refer to the configuration section for custom setup.
 		cmd = "Trouble",
 		init = function ()

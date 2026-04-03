@@ -24,6 +24,8 @@ return {
 		},
 	},
 	--event = "BufReadPost",
+	---@module "ufo"
+	---@class UfoConfig
 	opts = {
 		open_fold_hl_timeout = 300,
 		--provider_selector = function(a)
