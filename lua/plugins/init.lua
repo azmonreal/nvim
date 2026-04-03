@@ -153,7 +153,38 @@ return {
 	{
 		"mrcjkb/rustaceanvim",
 		version = "^5",
-		ft = { "rust" },
+		-- ft = { "rust" },
+		dependencies = {
+			"mfussenegger/nvim-dap",
+		},
+		init = function ()
+			Utils.setKeymaps(
+				{
+					{
+						{ "<F8>",  "<cmd>RustLsp debuggables<CR>" },
+						{ "<F20>", ":RustLsp debuggables" },
+					},
+				}
+			)
+
+			vim.g.rustaceanvim = {
+				server = {
+					on_attach = function (client, bufnr)
+						-- you can also put keymaps in here
+					end,
+					settings = {
+						-- rust-analyzer language server configuration
+						["rust-analyzer"] = {
+							runnables = {
+								extraArgs = {
+									"--release",
+								},
+							},
+						},
+					},
+				},
+			}
+		end,
 	},
 
 	{
