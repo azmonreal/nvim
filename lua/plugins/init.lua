@@ -240,7 +240,10 @@ return {
 		---@module "conform"
 		---@type conform.setupOpts
 		opts = {
-			format_on_save = nil,
+			format_on_save = {
+				timeout_ms = 500,
+				lsp_format = "fallback",
+			},
 			quiet = true,
 			formatters_by_ft = {
 				typescript = { "prettier" },
@@ -290,19 +293,19 @@ return {
 
 			vim.list_extend(lint.linters.mypy.args,
 				{ "--strict", "--enable-incomplete-feature=NewGenericSyntax", function ()
-					local cpath = vim.fn.expand("%:p:h")
+					-- local cpath = vim.fn.expand("%:p:h")
 					-- TODO: use better way to determine when inside onedrive
-					if cpath:match("Semesters") then
-						-- TODO: use a local dir instead of having no cache
-						return "--cache-dir=/dev/null"
-					end
+					-- if cpath:match("Semesters") then
+					-- TODO: use a local dir instead of having no cache
+					-- 	return "--cache-dir=/dev/null"
+					-- end
 				end })
 
 			vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 				callback = function ()
 					-- try_lint without arguments runs the linters defined in `linters_by_ft`
 					-- for the current filetype
-					require("lint").try_lint()
+					require("lint").try_lint(nil, { ignore_errors = true })
 
 					-- You can call `try_lint` with a linter name or a list of names to always
 					-- run specific linters, independent of the `linters_by_ft` configuration
