@@ -36,9 +36,6 @@ return {
 			"neovim/nvim-lspconfig",
 		},
 		opts = {
-			ensure_installed = {
-				"lua_ls", "clangd", "texlab", "basedpyright", "ruff", "ts_ls",
-			},
 			automatic_installation = true,
 			handlers = {
 				function (server_name)
