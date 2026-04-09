@@ -23,8 +23,6 @@ vim.api.nvim_create_autocmd("LspAttach",
 	}
 )
 
-local capabilities = require("blink.cmp").get_lsp_capabilities()
-
 return {
 	{
 		"williamboman/mason-lspconfig",
@@ -35,82 +33,6 @@ return {
 			},
 			"neovim/nvim-lspconfig",
 		},
-		opts = {
-			automatic_installation = true,
-			handlers = {
-				function (server_name)
-					require("lspconfig")[server_name].setup({ capabilities = capabilities })
-				end,
-
-				["ts_ls"] = function ()
-					require("lspconfig").ts_ls.setup({
-						capabilities = capabilities,
-						init_options = {
-							hostInfo = "neovim",
-							preferences = {
-								importModuleSpecifierPreference = "non-relative",
-							},
-						},
-					})
-				end,
-				["basedpyright"] = function ()
-					require("lspconfig").basedpyright.setup({
-						capabilities = capabilities,
-						settings = {
-							basedpyright = {
-								reportUnkownVariable = false,
-								typeCheckingMode = "standard",
-							},
-						},
-					})
-				end,
-
-				["lua_ls"] = function ()
-					require("lspconfig").lua_ls.setup {
-						capabilities = capabilities,
-						settings = {
-							Lua = {
-								-- workspace = {
-								-- 	checkThirdParty = false,
-								-- },
-								diagnostics = {
-									neededFileStatus = {
-										["codestyle-check"] = "Any",
-									},
-								},
-							},
-						},
-					}
-				end,
-				["clangd"] = function ()
-					require("lspconfig").clangd.setup({
-						capabilities = capabilities,
-						cmd = {
-							"clangd",
-							"--offset-encoding=utf-16",
-						},
-						on_attach = function (client, bufnr)
-							local function handler(err, uri)
-								if not uri or uri == "" then
-									vim.api.nvim_echo({ { "Corresponding file cannot be determined" } }, false, {})
-									return
-								end
-								local file_name = vim.uri_to_fname(uri)
-								vim.api.nvim_cmd({
-									cmd = "edit",
-									args = { file_name },
-								}, {})
-							end
-							local function client_request()
-								vim.lsp.get_client_by_id(client.id).request("textDocument/switchSourceHeader",
-									{ uri = vim.uri_from_bufnr(0) }, handler, 0)
-							end
-
-							vim.keymap.set("n", "<leader>gs", client_request, {})
-						end,
-					})
-				end,
-			},
-		},
+		opts = true,
 	},
 }
