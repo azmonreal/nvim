@@ -33,4 +33,20 @@ M.setKeymaps = function (customMaps, gopts)
 	end
 end
 
+local function close_hidden_buffers(force)
+	for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+		if vim.api.nvim_buf_is_loaded(buf) and vim.fn.empty(vim.fn.win_findbuf(buf)) == 1 then
+			vim.api.nvim_buf_delete(buf, { force = force })
+		end
+	end
+end
+
+M.close_hidden_buffers = function ()
+	close_hidden_buffers(false)
+end
+
+M.force_close_hidden_buffers = function ()
+	close_hidden_buffers(true)
+end
+
 return M
