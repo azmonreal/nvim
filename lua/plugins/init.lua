@@ -553,4 +553,36 @@ return {
 		opts = {},
 		event = "VeryLazy",
 	},
+	{
+		"obsidian-nvim/obsidian.nvim",
+		version = "*", -- use latest release, remove to use latest commit
+		opts = function ()
+			local workspaces = {}
+			for name, type in vim.fs.dir("~/Documents/vaults") do
+				if type == "directory" or type == "link" then
+					table.insert(workspaces, {
+						name = name,
+						path = "~/Documents/vaults/" .. name,
+					})
+				end
+			end
+
+			---@module 'obsidian'
+			---@type obsidian.config
+			local opts = {
+				legacy_commands = false, -- this will be removed in the next major release
+				-- merge generated with manual
+				workspaces = vim.list_extend(workspaces, {}),
+				callbacks = {
+					enter_note = function (note)
+						vim.keymap.set("n", "<leader>fo", "<cmd>Obsidian<cr>", {
+							buffer = true,
+							desc = "Obsidian menu",
+						})
+					end,
+				},
+			}
+			return opts
+		end,
+	},
 }
